@@ -1,0 +1,185 @@
+/*
+ * Theme der Website – verbindliche Umsetzung von /DESIGN.md.
+ * Alle Farben, Schriften, Größen und Abstände kommen ausschließlich von hier.
+ * Die Tailwind-Standardpaletten (Farben, Schatten, Rundungen) sind bewusst
+ * entfernt: Es gibt technisch keine Fremdfarben, keine Schatten, keine runden Ecken.
+ */
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  /* ---- Tailwind-Defaults entfernen (DESIGN.md: eine Tinte, flach, scharfkantig) ---- */
+  --color-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+  --radius-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+
+  /* ---- Farben (DESIGN.md · Colors) ---- */
+  --color-paper: #fafaf9;        /* Cream Paper – einzige Fläche */
+  --color-ink: #4a0a05;          /* Oxblood Ink – Text, Linien, Links, Buttons · 15,0:1 auf Paper */
+  --color-ink-muted: #764642;    /* Sekundärtext · 7,4:1 auf Paper (AAA) */
+  --color-ink-subtle: #885e5a;   /* Meta/Kleintext, Untergrenze · 5,3:1 auf Paper (AA) */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* ---- Schriften (DESIGN.md · Typography, Anpassungen für Arztpraxis) ---- */
+  --font-display: "Libre Caslon Display", "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* ---- Typo-Skala: feste Stufen, keine Zwischengrößen ---- */
+  --text-label: 0.875rem;                                           /* 14px Uppercase-Labels, Meta */
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.08em;
+  --text-ui: 1rem;                                                  /* 16px Navigation, Buttons, Captions */
+  --text-ui--line-height: 1.45;
+  --text-body: 1.125rem;                                            /* 18px Fließtext (Mindestgröße) */
+  --text-body--line-height: 1.65;
+  --text-lead: 1.3125rem;                                           /* 21px Antwortabsätze, Intro */
+  --text-lead--line-height: 1.55;
+  --text-h3: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);            /* 22→26px  Caslon Text */
+  --text-h3--line-height: 1.25;
+  --text-h2: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);              /* 28→40px  Caslon Display */
+  --text-h2--line-height: 1.15;
+  --text-h1: clamp(2.25rem, 1.75rem + 2.1vw, 3.5rem);               /* 36→56px  Caslon Display */
+  --text-h1--line-height: 1.08;
+  --text-hero: clamp(2.625rem, 1.85rem + 3.4vw, 4.75rem);           /* 42→76px  Caslon Display */
+  --text-hero--line-height: 1.03;
+
+  /* ---- Abstände (8er-Raster, großzügig) ---- */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);            /* Seitenrand 16→40px */
+  --spacing-section: clamp(4.5rem, 3rem + 6vw, 10rem);              /* Abstand zwischen Sektionen 72→160px */
+
+  /* ---- Breiten ---- */
+  --container-page: 90rem;   /* 1440px Seitenraster */
+  --container-text: 42rem;   /* ~70 Zeichen Lesebreite */
+
+  /* ---- Linien ---- */
+  --default-border-width: 1px;
+}
+
+/* ================= Basis ================= */
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  *, ::before, ::after {
+    border-color: var(--color-ink);
+    box-shadow: none !important;   /* DESIGN.md: keine Schatten – auch nicht aus Browser-Defaults */
+    border-radius: 0;
+  }
+  h1, h2 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; }
+  h3, h4 { font-family: var(--font-serif); font-weight: 400; text-wrap: balance; }
+  h1 { font-size: var(--text-h1); line-height: var(--text-h1--line-height); letter-spacing: -0.01em; }
+  h2 { font-size: var(--text-h2); line-height: var(--text-h2--line-height); letter-spacing: -0.005em; }
+  h3 { font-size: var(--text-h3); line-height: var(--text-h3--line-height); }
+  h4 { font-size: var(--text-lead); line-height: var(--text-lead--line-height); }
+  p, li { text-wrap: pretty; hyphens: auto; overflow-wrap: break-word; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+
+  /* Gut sichtbarer Fokus (WCAG 2.2 · 2.4.7 / 2.4.11) */
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+}
+
+/* ================= Komponenten ================= */
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+  .section { padding-block: var(--spacing-section); }
+
+  /* Uppercase-Label: Großschreibung NUR per CSS, damit lang="tr" i → İ korrekt umsetzt */
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    line-height: var(--text-label--line-height);
+    letter-spacing: var(--text-label--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .kategorie { font-family: var(--font-serif); font-size: var(--text-h3); line-height: var(--text-h3--line-height); }
+  .hero-title { font-family: var(--font-display); font-size: var(--text-hero); line-height: var(--text-hero--line-height); letter-spacing: -0.015em; }
+  .lead { font-size: var(--text-lead); line-height: var(--text-lead--line-height); }
+  .meta { font-size: var(--text-ui); line-height: var(--text-ui--line-height); color: var(--color-ink-muted); }
+
+  .hairline { border: 0; border-top: 1px solid var(--color-ink); }
+
+  /* Links im Fließtext und Navigation */
+  .link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+  .link:hover { text-decoration-thickness: 2px; }
+  .nav-link { text-decoration: none; padding-block: 0.5rem; }
+  .nav-link:hover, .nav-link[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em; }
+
+  /* Buttons – flach, scharfkantig, keine festen Breiten (lange Übersetzungen) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3rem;                    /* 48px Klickfläche */
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    line-height: 1.25;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid var(--color-ink);
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .btn-primary { background: var(--color-ink); color: var(--color-paper); }
+  .btn-primary:hover { background: var(--color-paper); color: var(--color-ink); }
+  .btn-outline { background: transparent; color: var(--color-ink); }
+  .btn-outline:hover { background: var(--color-ink); color: var(--color-paper); }
+  .btn-compact { min-height: 2.75rem; padding: 0.5rem 1rem; }
+
+  /* Formularfelder */
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+    font-size: var(--text-body);
+  }
+  .field::placeholder { color: var(--color-ink-subtle); opacity: 1; }
+
+  /* Bild-Platzhalter „FOTO FOLGT“ (nur wo weder echtes Foto noch Stock zulässig ist) */
+  .foto-folgt {
+    display: grid;
+    place-items: center;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+}

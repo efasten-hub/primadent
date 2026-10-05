@@ -1,0 +1,39 @@
+---
+/**
+ * Sprachumschalter „DE · EN · ES · TR“ – dezent im Stil der Navigation, keine Flaggen.
+ * Die aktive Sprache ist unterstrichen (aria-current). Jeder Link trägt lang + hreflang,
+ * damit Screenreader die Sprachnamen korrekt aussprechen.
+ * Die Ziel-URLs werden in Phase 2 aus der zentralen Slug-Zuordnung berechnet.
+ */
+interface SprachLink {
+  code: string;        // "de" | "en" | "es" | "tr"
+  href: string;        // entsprechende Seite in dieser Sprache
+  name: string;        // Eigenbezeichnung, z. B. „Türkçe“
+}
+interface Props {
+  aktuell: string;
+  links: SprachLink[];
+  label: string;       // z. B. „Sprache wählen“ (aus i18n)
+  class?: string;
+}
+const { aktuell, links, label, class: klasse = "" } = Astro.props;
+---
+<nav aria-label={label} class:list={["sprachumschalter", klasse]}>
+  <ul class="flex flex-wrap items-center gap-x-1 text-ui">
+    {links.map((l, i) => (
+      <li class="flex items-center gap-x-1">
+        {i > 0 && <span aria-hidden="true" class="text-ink-muted">·</span>}
+        <a
+          href={l.href}
+          hreflang={l.code}
+          lang={l.code}
+          aria-current={l.code === aktuell ? "true" : undefined}
+          class="nav-link inline-flex min-h-11 min-w-8 items-center justify-center px-1"
+        >
+          <span aria-hidden="true">{l.code.toUpperCase()}</span>
+          <span class="sr-only">{l.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
