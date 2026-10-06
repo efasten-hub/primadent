@@ -37,14 +37,16 @@ There are no secondary, accent, success or error colours. States are expressed t
 
 ## 3. Typography Rules
 
+> Belegt sind nur: Caslon Ionic 24px für Kategorien, Journal-Headlines und Wortmarke; Mier A 13–26px für Body, Navigation, Captions, Datumsangaben, Links und UI. Werte mit „≈“ sind **Annahmen** der Rekonstruktion und durch den Original-Export zu ersetzen.
+
 | Role | Family | Size | Weight | Line height | Notes |
 |---|---|---|---|---|---|
-| Wordmark | Caslon Ionic | 24px | 400 | 1.2 | brand name |
-| Category / Journal headline | Caslon Ionic | 24px | 400 | 1.2 | the only serif use |
-| Large UI / Intro | Mier A | 26px | 400 | 1.3 | sparing |
-| Body | Mier A | 16px | 400 | 1.5 | |
-| Navigation / Links | Mier A | 14–16px | 400–500 | 1.4 | underline on hover/active |
-| Caption / Date / Meta | Mier A | 13px | 400 | 1.4 | |
+| Wordmark | Caslon Ionic | 24px | ≈ 400 | ≈ 1.2 | brand name |
+| Category / Journal headline | Caslon Ionic | 24px | ≈ 400 | ≈ 1.2 | the only serif use |
+| Large UI / Intro | Mier A | 26px (upper end of range) | ≈ 400 | ≈ 1.3 | sparing |
+| Body | Mier A | ≈ 16px | ≈ 400 | ≈ 1.5 | |
+| Navigation / Links | Mier A | ≈ 14–16px | ≈ 400–500 | ≈ 1.4 | underline on hover/active |
+| Caption / Date / Meta | Mier A | 13px (lower end of range) | ≈ 400 | ≈ 1.4 | |
 
 **Principles**
 - Two typefaces only. Serif for identity and headlines, sans for everything functional.
@@ -69,7 +71,9 @@ There are no secondary, accent, success or error colours. States are expressed t
 
 ## 5. Layout Principles
 
-- Wide, magazine-like grid. Content sits on a 12-column rhythm with generous gutters.
+> Abschnitt 5 ist aus der Stilbeschreibung abgeleitet („printed design quarterly“), Einzelwerte sind Annahmen.
+
+- Wide, magazine-like grid with generous gutters (≈ 12-column rhythm).
 - Large vertical spacing between sections. Whitespace is a design element.
 - Lists and grids are separated by hairlines rather than gaps or boxes.
 
@@ -153,7 +157,7 @@ Die Headlines werden größer als im Original (24px) und responsiv mit `clamp()`
 - **Lange Übersetzungen:** Spanisch und Deutsch laufen 20–30 % länger als Englisch. Buttons, Navigation und Sprachumschalter haben **keine festen Breiten**. Sie wachsen mit dem Inhalt und brechen per `flex-wrap` um. Der Header ist zweizeilig: oben Wortmarke, Sprachen, Telefon und Termin, darunter die Navigation mit Haarlinie. Längere Navigationspunkte verdrängen so nichts.
 - **Uppercase** nur per CSS (`text-transform: uppercase` in `.label`), niemals im Quelltext. `<html lang>` ist pro Sprache korrekt gesetzt. So wird im Türkischen `i → İ` umgesetzt (getestet: „iletişim ve randevu“ → „İLETİŞİM VE RANDEVU“).
 - `hyphens: auto` und `text-wrap: pretty` im Fließtext, `text-wrap: balance` in Überschriften.
-- Mindest-Klickfläche: 44 × 44px (Navigation, Sprachumschalter), 48px Höhe für Buttons und Felder.
+- Mindest-Klickfläche: 44 × 44px für Navigation, Sprachumschalter, Wortmarke und Telefonlink (`.nav-link`), 48px Höhe für Buttons und Felder. Das liegt deutlich über WCAG 2.5.8 (24px). Gemessen bei 320–1440px.
 
 ### 8.4 Abstände und Raster
 
@@ -182,7 +186,18 @@ Die Headlines werden größer als im Original (24px) und responsiv mit `clamp()`
 - Im Header als Kürzel **„DE · EN · ES · TR“** im Stil der Navigation (Inter 16px). Die aktive Sprache ist unterstrichen (`aria-current`). Keine Flaggen.
 - Jeder Link trägt `lang` und `hreflang`. Der sichtbare Text ist das Kürzel, für Screenreader zusätzlich die Eigenbezeichnung („Türkçe“ usw.).
 - Auf dem Handy steht er gut sichtbar oben unter der Wortmarke und zusätzlich im Menü.
+- Der zugängliche Name enthält das sichtbare Kürzel („DE Deutsch“), damit Sprachsteuerung per „DE“ funktioniert (WCAG 2.5.3 Label in Name).
 
-### 8.8 Ausdrücklich unverändert
+### 8.8 Menü und Header
+
+- Ab 1024px ist der Header zweizeilig: oben Wortmarke, Sprachumschalter, Telefon und Termin-Button, darunter die Navigation, getrennt durch eine Haarlinie. So verdrängen längere Übersetzungen nichts.
+- Unter 1024px gibt es ein Menü als `<details>`/`<summary>`. Es funktioniert ohne JavaScript und enthält Navigation, Sprachumschalter und Anruf-Button.
+
+### 8.9 Technische Leitplanken
+
+- Keine Inline-Styles (`style="…"`) und keine Inline-Event-Handler (`onclick="…"`). Damit bleibt eine strikte Content-Security-Policy möglich (Phase 7).
+- Beim Seitenaufruf gibt es keine externen Requests. Schriften und Bilder liegen lokal.
+
+### 8.10 Ausdrücklich unverändert
 
 Eine Tinte, eine Fläche, keine Schatten, keine Verläufe, keine Rundungen, Haarlinien als Trenner, Serife nur für Headlines, Kategorien und Wortmarke, Fotografie trägt die Gestaltung.

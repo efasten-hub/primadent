@@ -7,12 +7,14 @@
 interface Eintrag { href: string; label: string; extern?: boolean; externHinweis?: string }
 interface Props { eintraege: Eintrag[]; label: string }
 const { eintraege, label } = Astro.props;
+// Feste Klassen statt Inline-Style – kompatibel mit einer strikten Content-Security-Policy
+const spalten = ["grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4"][eintraege.length - 1] ?? "grid-cols-3";
 ---
 <nav
   aria-label={label}
   class="fixed inset-x-0 bottom-0 z-40 border-t border-ink bg-paper pb-[env(safe-area-inset-bottom)] md:hidden"
 >
-  <ul class="grid" style={`grid-template-columns: repeat(${eintraege.length}, minmax(0, 1fr));`}>
+  <ul class:list={["grid", spalten]}>
     {eintraege.map((e, i) => (
       <li class:list={[i > 0 && "border-l border-ink"]}>
         <a

@@ -15,11 +15,13 @@ const sprachen = [
   { code: "tr", href: "#", name: "Türkçe" },
 ];
 
+const nav = ["Leistungen", "Über Dr. Adali", "Praxis & Team", "Ratgeber", "FAQ", "Termin & Kontakt"];
+
 const farben = [
-  { name: "Cream Paper", token: "--color-paper", hex: "#fafaf9", rolle: "einzige Fläche", kontrast: "–" },
-  { name: "Oxblood Ink", token: "--color-ink", hex: "#4a0a05", rolle: "Text, Linien, Links, Buttons", kontrast: "15,0 : 1 · AAA" },
-  { name: "Oxblood Muted", token: "--color-ink-muted", hex: "#764642", rolle: "Sekundärtext", kontrast: "7,4 : 1 · AAA" },
-  { name: "Oxblood Subtle", token: "--color-ink-subtle", hex: "#885e5a", rolle: "Meta, Platzhalter (Untergrenze)", kontrast: "5,3 : 1 · AA" },
+  { name: "Cream Paper", token: "--color-paper", hex: "#fafaf9", bg: "bg-paper", rolle: "einzige Fläche", kontrast: "–" },
+  { name: "Oxblood Ink", token: "--color-ink", hex: "#4a0a05", bg: "bg-ink", rolle: "Text, Linien, Links, Buttons", kontrast: "15,0 : 1 · AAA" },
+  { name: "Oxblood Muted", token: "--color-ink-muted", hex: "#764642", bg: "bg-ink-muted", rolle: "Sekundärtext", kontrast: "7,4 : 1 · AAA" },
+  { name: "Oxblood Subtle", token: "--color-ink-subtle", hex: "#885e5a", bg: "bg-ink-subtle", rolle: "Meta, Platzhalter (Untergrenze)", kontrast: "5,3 : 1 · AA" },
 ];
 
 const stufen = [
@@ -50,27 +52,39 @@ const zeichenproben = [
     <link rel="preload" href="/fonts/libre-caslon-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   </head>
-  <body class="pb-16 md:pb-0">
+  <body class="pb-[calc(3.5rem+1px+env(safe-area-inset-bottom))] md:pb-0">
     <a href="#inhalt" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:p-3">Zum Inhalt springen</a>
 
     <!-- ===================== Header (Muster) ===================== -->
     <header class="border-b border-ink">
       <div class="container-page flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4">
-        <a href="#" class="font-serif text-h3 whitespace-nowrap no-underline">Zahnarztpraxis Dr. Adali</a>
+        <a href="#" class="inline-flex min-h-11 items-center font-serif text-h3 whitespace-nowrap no-underline">Zahnarztpraxis Dr. Adali</a>
         <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
           <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen" class="whitespace-nowrap" />
-          <a href="tel:+49304426843" class="nav-link hidden whitespace-nowrap text-ui md:inline">030 44 26 84 3</a>
+          <a href="tel:+49304426843" class="nav-link hidden whitespace-nowrap text-ui md:inline-flex">030 44 26 84 3</a>
           <a href="#" class="btn btn-primary btn-compact hidden whitespace-nowrap md:inline-flex">Online-Termin</a>
         </div>
       </div>
+      <!-- Menü unter 1024px: <details> funktioniert ohne JavaScript -->
+      <details class="menue border-t border-ink lg:hidden">
+        <summary class="container-page label flex min-h-12 cursor-pointer list-none items-center justify-between">
+          <span>Menü</span><span aria-hidden="true" class="menue-zeichen">+</span>
+        </summary>
+        <nav aria-label="Hauptnavigation (mobil)" class="container-page border-t border-ink pb-6">
+          <ul class="text-body">
+            {nav.map((n, i) => (
+              <li class="border-b border-ink"><a class="nav-link w-full min-h-12 justify-start" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
+            ))}
+          </ul>
+          <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Menü)" class="mt-4" />
+          <a href="tel:+49304426843" class="btn btn-outline mt-4 w-full">030 44 26 84 3 anrufen</a>
+        </nav>
+      </details>
       <nav aria-label="Hauptnavigation" class="hidden border-t border-ink lg:block">
-        <ul class="container-page flex flex-wrap gap-x-8 py-2 text-ui">
-          <li><a class="nav-link inline-block" href="#" aria-current="page">Leistungen</a></li>
-          <li><a class="nav-link inline-block" href="#">Über Dr. Adali</a></li>
-          <li><a class="nav-link inline-block" href="#">Praxis &amp; Team</a></li>
-          <li><a class="nav-link inline-block" href="#">Ratgeber</a></li>
-          <li><a class="nav-link inline-block" href="#">FAQ</a></li>
-          <li><a class="nav-link inline-block" href="#">Termin &amp; Kontakt</a></li>
+        <ul class="container-page flex flex-wrap gap-x-8 py-1 text-ui">
+          {nav.map((n, i) => (
+            <li><a class="nav-link" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
+          ))}
         </ul>
       </nav>
     </header>
@@ -115,7 +129,7 @@ const zeichenproben = [
         <div class="mt-10 grid border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
           {farben.map((f) => (
             <div class="border-b border-ink py-6 sm:pr-6">
-              <div class="mb-4 h-24 border border-ink" style={`background:${f.hex}`}></div>
+              <div class:list={["mb-4 h-24 border border-ink", f.bg]}></div>
               <p class="font-serif text-h3">{f.name}</p>
               <p class="meta mt-1">{f.hex} · <code>{f.token}</code></p>
               <p class="mt-2 text-ui">{f.rolle}</p>
@@ -215,13 +229,13 @@ const zeichenproben = [
         </ul>
 
         <h2 class="mt-24">Formular</h2>
-        <form class="mt-8 grid max-w-text gap-6" onsubmit="return false">
+        <form class="mt-8 grid max-w-text gap-6" action="#" method="get">
           <label class="grid gap-2"><span class="text-ui font-medium">Name</span><input class="field" type="text" autocomplete="name" /></label>
           <label class="grid gap-2"><span class="text-ui font-medium">Anliegen</span>
             <select class="field"><option>Erstberatung</option><option>Zweitmeinung</option><option>Implantat</option></select>
           </label>
           <label class="grid gap-2"><span class="text-ui font-medium">Nachricht <span class="text-ink-muted">(optional)</span></span><textarea class="field" rows="4" placeholder="Bitte keine Befunde – die bringen Sie gern mit."></textarea></label>
-          <div><button class="btn btn-primary" type="submit">Anfrage senden</button></div>
+          <div><button class="btn btn-primary" type="button">Anfrage senden</button></div>
         </form>
       </section>
     </main>
@@ -229,7 +243,7 @@ const zeichenproben = [
     <footer class="border-t border-ink">
       <div class="container-page grid gap-6 py-12 md:grid-cols-3">
         <p class="font-serif text-h3">Zahnarztpraxis Dr. Adali</p>
-        <p class="text-ui">Schönhauser Allee 10–11<br />10119 Berlin</p>
+        <p>Schönhauser Allee 10–11<br />10119 Berlin</p>
         <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Fußzeile)" />
       </div>
     </footer>

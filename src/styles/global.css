@@ -135,8 +135,8 @@
   /* Links im Fließtext und Navigation */
   .link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
   .link:hover { text-decoration-thickness: 2px; }
-  .nav-link { text-decoration: none; padding-block: 0.5rem; }
-  .nav-link:hover, .nav-link[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em; }
+  .nav-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; min-width: 2.75rem; text-decoration: none; }   /* 44 × 44px Klickfläche */
+  .nav-link:hover, .nav-link[aria-current]:not([aria-current="false"]) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em; }
 
   /* Buttons – flach, scharfkantig, keine festen Breiten (lange Übersetzungen) */
   .btn {
@@ -173,6 +173,11 @@
     font-size: var(--text-body);
   }
   .field::placeholder { color: var(--color-ink-subtle); opacity: 1; }
+
+  /* Menü ohne JavaScript (<details>) */
+  .menue > summary::-webkit-details-marker { display: none; }
+  .menue[open] .menue-zeichen { transform: rotate(45deg); }
+  .menue-zeichen { display: inline-block; font-size: var(--text-h3); line-height: 1; transition: transform 150ms ease; }
 
   /* Bild-Platzhalter „FOTO FOLGT“ (nur wo weder echtes Foto noch Stock zulässig ist) */
   .foto-folgt {
