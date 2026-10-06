@@ -63,7 +63,7 @@ const schwerpunkte = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Designsystem (intern) · Zahnarztpraxis Dr. Adali</title>
+    <title>Designsystem (intern) · Primadent – Zahnarztpraxis Dr. Adali</title>
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/libre-caslon-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -75,7 +75,10 @@ const schwerpunkte = [
     <!-- ===================== Header (A8) ===================== -->
     <header class="border-b border-oxblood-ink">
       <div class="container-page flex flex-wrap items-center justify-between gap-x-32 gap-y-4 py-12">
-        <a href="#" class="inline-flex min-h-44 items-center whitespace-nowrap font-caslon-ionic text-subheading no-underline">Zahnarztpraxis Dr. Adali</a>
+        <a href="#" class="inline-flex min-h-44 flex-col justify-center no-underline">
+          <span class="font-caslon-ionic text-subheading leading-[1]">Primadent</span>
+          <span class="caption mt-4">Zahnarztpraxis Dr. Adali</span>
+        </a>
         <div class="flex flex-wrap items-center gap-x-24 gap-y-8">
           <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen" class="whitespace-nowrap" />
           <a href={tel} class="nav-link hidden whitespace-nowrap md:inline-flex">030 44 26 84 3</a>
@@ -113,7 +116,7 @@ const schwerpunkte = [
         <div>
           <p class="caption mb-24">Designsystem · Phase 1</p>
           <h1 class="hero-title">Zahnmedizin auf universitärem Niveau.</h1>
-          <p class="intro mt-24 text-oxblood-muted">Zahnarztpraxis Dr. Adali · Schönhauser Allee, Berlin-Mitte</p>
+          <p class="intro mt-24 text-oxblood-muted">Primadent · Zahnarztpraxis Dr. Adali · Schönhauser Allee, Berlin-Mitte</p>
           <div class="mt-40 flex flex-wrap gap-12">
             <a href={doctolib} class="btn btn-primary" target="_blank" rel="noopener">
               Online-Termin buchen<span class="sr-only"> (öffnet in neuem Fenster)</span>
@@ -272,7 +275,8 @@ const schwerpunkte = [
     <footer class="border-t border-oxblood-ink">
       <div class="container-page grid gap-32 py-60 md:grid-cols-3">
         <div>
-          <p class="font-caslon-ionic text-subheading">Zahnarztpraxis Dr. Adali</p>
+          <p class="font-caslon-ionic text-subheading">Primadent</p>
+          <p class="caption">Zahnarztpraxis Dr. Adali</p>
           <p class="mt-8 text-nav">Schönhauser Allee 10–11<br />10119 Berlin</p>
         </div>
         <ul class="text-nav">

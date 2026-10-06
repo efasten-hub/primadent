@@ -79,7 +79,7 @@ Dr. Kleinert: Dr. Thorsten Kleinert hat eine eigene Praxis an derselben Adresse 
 | Gruppe | Dateien (ID) | Bewertung | Entscheidung |
 |---|---|---|---|
 | Porträt Dr. Adali | 74b458e5 (1362×1545, Canon EOS 5D Mk II, 2018) | echtes Porträt, von der Praxis bestätigt | ✓ übernommen: `src/assets/fotos/dr-ufuk-adali-portraet.jpg` |
-| „Die Praxis“-Galerie | 89e25972 (Keramikveneers), d3ee5ec8 (Implantat-Chirurgieset), f49f9807 (Instrumente) | **keine Raumfotos**, sondern Detailaufnahmen. Herkunft unklar. | übernommen als `praxis-detail-*.jpg` [[BILDRECHTE PRÜFEN]] |
+| „Die Praxis“-Galerie | 89e25972 (Keramikveneers), d3ee5ec8 (Implantat-Chirurgieset), f49f9807 (Instrumente) | **keine Raumfotos**, laut Praxis **Stockfotos** mit unbekannter Lizenz | ⛔ wieder entfernt, in Phase 3 durch Stockfotos mit nachweisbarer Lizenz ersetzt |
 | Logo | b7618cf4, ff45ac99 | Magenta-Logo mit schwarzer Vignette | nicht übernommen; das saubere Logo von der Praxis liegt vor |
 | **Klinische Intraoralfotos** | 3fe1f75e, 6cb493ec, b7bea2bc, b90ac350, e9044b08, **f4fc41f8 (Kind)**, d9651616 (Endo), bb0f7fb0 (Implantatprothetik) | vermutlich **echte Patientenfälle** = Gesundheitsdaten | ⛔ **nicht übernommen**. Nur mit schriftlicher Einwilligung und rechtlicher Prüfung (HWG § 11). Nicht im Repository. |
 | Stock-/Baukastenbilder | 43bd40f6, 43f69c3b, 5e1c098b, 735df6a3 („ALWAYS SMILE“), 77497767, 88af4b7d (OP, Türkis), ac9b72e6, c3dc635f (pinke Zahnbürste) | Lizenz unklar, teils Klischees laut Auftrag | ⛔ nicht übernommen, in Phase 3 durch neue Stockfotos ersetzt |
@@ -95,11 +95,57 @@ Dr. Kleinert: Dr. Thorsten Kleinert hat eine eigene Praxis an derselben Adresse 
 
 ## 8. Offene Fragen an die Praxis
 
-1. **Praxisname für Google, Doctolib und Website:** „Zahnarztpraxis Dr. Adali“ oder „Praxisgemeinschaft Dr. Adali / Dr. Kleinert“? Für SEO und GEO muss er überall identisch sein.
-2. **Sprechzeiten von Dr. Adali** (Wochentage und Uhrzeiten) im Unterschied zu den Zeiten der Praxisgemeinschaft.
-3. **Sprachen:** Doctolib nennt Deutsch und Englisch. Spricht jemand in der Praxis Türkisch oder Spanisch?
-4. **Seit wann** gibt es die eigene Praxis (Gründung oder Übernahme)?
-5. **Klinische Fotos:** Liegen schriftliche Einwilligungen der Patienten vor? Sind es eigene Fälle?
-6. **Detailfotos der Galerie:** eigene Aufnahmen oder Stock?
-7. **Parken:** Tiefgarage (Website) oder „kostenlose Parkplätze in der Nähe“ (Doctolib)?
+1. ~~Praxisname~~ → erledigt: „Primadent“ (siehe Abschnitte 9 und 10)
+2. **Sprechzeiten von Dr. Adali**: offen (siehe Abschnitt 11)
+3. ~~Sprachen~~ → Türkisch und Spanisch: ja. Offen: wer spricht welche Sprache?
+4. ~~Seit wann~~ → 2025
+5. **Klinische Fotos:** Einwilligungen unbekannt → bleiben ausgeschlossen
+6. ~~Galeriefotos~~ → Stock, entfernt
+7. ~~Parken~~ → „kostenlose Parkplätze in der Tiefgarage“
 8. **Logo-Umfärbung** in Oxblood: freigegeben?
+
+## 9. Antworten der Praxis (06.10.2026)
+
+| Frage | Antwort | Folge für die Website |
+|---|---|---|
+| Praxisname | **„Primadent“** | Neuer Name überall identisch (Website, Google, Doctolib, Verzeichnisse). Doctolib heißt noch „Praxisgemeinschaft Dr. Adali / Dr. Kleinert“ und muss angepasst werden. ⚠️ Namenskonflikte siehe Abschnitt 10. |
+| Sprechzeiten Dr. Adali | offen | siehe Abschnitt 11 |
+| Türkisch/Spanisch im Team | **ja** | ES- und TR-Versionen ohne Hinweis „nur Deutsch/Englisch“. Offen ist, **wer** welche Sprache spricht (für Team-Seite und `knowsLanguage`). Doctolib nennt bisher nur Deutsch und Englisch, das muss ergänzt werden. |
+| Eigene Praxis seit | **2025** | `praxis_seit: 2025`. Die Aussagen „seit 2011“ der alten Seite entfallen. |
+| Einwilligungen klinische Fotos | unbekannt | bleiben ausgeschlossen |
+| Galeriefotos | **Stock** | entfernt (siehe Abschnitt 6) |
+| Parken | **„kostenlose Parkplätze in der Tiefgarage“** | so in `site.ts`, bei Doctolib angleichen |
+
+## 10. Namenskonflikt „Primadent“ ⚠️
+
+Der Name wird bereits verwendet (Websuche, 06.10.2026):
+
+| Wer | Ort | Branche |
+|---|---|---|
+| **Labor Primadent Zahntechnik / Primadent Zahntechnikermeisterteam** (Haming + Schulz OHG bzw. Schulz e. K.), Saarstr. 5 | **Berlin**-Friedenau | **Dentallabor** |
+| Zahnarztpraxis Primadent (zahnarztpraxis-primadent.de) | Bremen | Zahnarztpraxis |
+| Zahnarztpraxis PrimaDent, Ornella Smiguel | Backnang | Zahnarztpraxis (auch auf Doctolib) |
+| zahntechnik-primadent.de | Herford | Dentallabor |
+| primadent.de | – | Domain steht zum Verkauf |
+
+Risiken:
+- **Kennzeichenrecht:** Ein Berliner Dentallabor mit gleichem Namen in derselben Branche und Stadt kann ältere Rechte am Unternehmenskennzeichen haben (§ 5 MarkenG). Dazu Markenrecherche bei DPMA/EUIPO. [[PRÜFEN juristisch vor Livegang]]
+- **Verwechslung:** Die neue Seite wirbt mit „eigenem Dentallabor“. Patienten könnten das Friedenauer Labor für das Praxislabor halten. Falls die Praxis tatsächlich mit diesem Labor verbunden ist: klären und dann korrekt benennen. [[PRÜFEN]]
+- **SEO/GEO:** Suchen nach „Primadent Berlin“ liefern heute das Labor. Der Name sollte deshalb immer zusammen mit „Zahnarztpraxis“ und „Dr. Adali“ auftreten, z. B. „Primadent – Zahnarztpraxis Dr. Adali“.
+- **Domain:** zahnarzt-adali.de bleibt. primadent.de wird verkauft (optional).
+- **Logo:** Das bestehende Logo zeigt ein „A“ (Adali). Ob es zu „Primadent“ passt, entscheidet die Praxis.
+
+## 11. Sprechzeiten: was die Quellen zeigen
+
+| Quelle | Angabe |
+|---|---|
+| Alte Website | „Montag, Mittwoch und Freitag sowie nach Vereinbarung“ |
+| Doctolib, Öffnungszeiten der **Praxisgemeinschaft** | Mo 9:00–19:30 · Di 12:00–19:30 · Mi 10:00–19:30 · Do 9:00–19:30 · Fr 9:00–16:00 |
+| Doctolib, **freie Termine Dr. Adali** (Stichprobe 06.10.–02.11.2026, Kontrolluntersuchung) | Termine an **Mo, Di, Do, Fr** (frühestens 9:00, spätestens 19:00), **nie mittwochs** |
+| Doctolib, freie Termine Dr. Kleinert | nur **mittwochs** |
+
+Doctolib-Agenden: Dr. Ufuk Adali (Zahnarzt), Dr. med. Thorsten Kleinert (Zahnarzt), eine Prophylaxe-Agenda (ZMP).
+
+Buchbare Terminarten bei Dr. Adali: Erstuntersuchung Neupatient:in (auch mit PZR), halbjährliche Kontrolle, Kinder (erste Untersuchung, Kontrolle), akute Beschwerden/Notfall, Beratung Implantat, Beratung Zahnersatz, Beratung Schnarchschiene, Beratung Ästhetik, Beratung Aligner, Beratung Bleaching, PZR (Erwachsene, Kinder, mit Kontrolle).
+
+Freie Termine zeigen nur Lücken im Kalender, keine vollständigen Sprechzeiten. **Verbindlich sind die Zeiten aus dem Doctolib-Kalender der Praxis** (Doctolib Pro → Einstellungen → Öffnungszeiten/Agenda) bzw. die Auskunft des Praxisteams. [[PRÜFEN]]

@@ -446,7 +446,7 @@ Der Export kennt nur Textlinks („there are no filled buttons“). Für die Pra
 
 ### A8 Header, Navigation, Logo
 
-- **Abweichung vom Export** (dort: Navigation ohne Logo, Wortmarke im Inhalt). Der Header zeigt links die **Serif-Wortmarke** „Zahnarztpraxis Dr. Adali“ (24px, Libre Caslon Text).
+- **Abweichung vom Export** (dort: Navigation ohne Logo, Wortmarke im Inhalt). Der Header zeigt links die **Serif-Wortmarke „Primadent“** (24px, Libre Caslon Text), darunter bzw. daneben in Caption-Größe „Zahnarztpraxis Dr. Adali“. Der Zusatz grenzt den Namen von gleichnamigen Betrieben ab (siehe `docs/bestandsaufnahme.md`, Abschnitt 10).
 - **Logo:** Das bestehende Praxislogo (Zahn mit „A“ im Kreis) ist magentafarben (`#bf316c`) und damit eine Fremdfarbe. Für diese Website gibt es eine **farblich angepasste Fassung in Oxblood/Cream** mit identischer Form (`src/assets/logo/logo-oxblood.png`). Sie wird nur als Favicon und App-Icon verwendet. Das Original liegt unverändert unter `src/assets/logo/logo-original-magenta.png`. **[[PRÜFEN: Freigabe der Logo-Umfärbung durch die Praxis]]**
 - **Zweizeiliger Header ab 1024px:**
   - Zeile 1: Wortmarke | Sprachumschalter · Telefon · „Online-Termin“
