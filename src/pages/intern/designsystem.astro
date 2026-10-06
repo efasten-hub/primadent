@@ -8,7 +8,7 @@ import "../../styles/global.css";
 import { Picture } from "astro:assets";
 import Sprachumschalter from "../../components/Sprachumschalter.astro";
 import MobileLeiste from "../../components/MobileLeiste.astro";
-import portraet from "../../assets/fotos/dr-ufuk-adali-portraet.png";
+import portraet from "../../assets/fotos/dr-ufuk-adali-portraet.jpg";
 
 // Vorläufig hier – wandert in Phase 2 nach src/config/site.ts
 const doctolib = "https://www.doctolib.de/zahnarztpraxis/berlin/zahnarztpraxis-dr-adali";
@@ -164,7 +164,7 @@ const schwerpunkte = [
             <Picture
               src={portraet}
               formats={["avif", "webp"]}
-              widths={[320, 480, 640, 768]}
+              widths={[320, 480, 640, 960, 1280]}
               sizes="(min-width: 768px) 40vw, 100vw"
               alt="Porträt von Dr. Ufuk Adali"
               class="w-full"

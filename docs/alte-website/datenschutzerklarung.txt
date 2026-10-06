@@ -1,0 +1,220 @@
+URL: https://zahnarzt-adali.de/datenschutzerklarung/
+TITLE: Zahnarztpraxis Dr. Adali - Datenschutzerklärung
+DESC: Informieren Sie sich über unsere Datenschutzpraktiken in der Zahnarztpraxis.
+
+Zur Hauptseite springen
+Zur Fußzeile springen
+Zur Navigation springen
+Startseite
+Leistungen
+Die Praxis
+Über Dr. Adali
+Kontakt & Infos
+.
+.
+
+Datenschutzerklärung
+
+Der Schutz Ihrer personenbezogenen Daten ist uns ein wichtiges Anliegen. Nachfolgend informieren wir Sie darüber, welche Daten auf dieser Website verarbeitet werden, zu welchem Zweck dies geschieht und welche Rechte Ihnen gemäß der Datenschutz-Grundverordnung (DSGVO) zustehen.
+
+1. Verantwortlicher im Sinne der DSGVO
+
+Zahnarztpraxis Dr. Adali
+Dr. med. dent. Ufuk Adali
+Schönhauser Allee 10–11
+10119 Berlin
+Telefon: 030 44 26 84 3
+E-Mail: kontakt@zahnarzt-adali.de
+
+2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck ihrer Verwendung
+
+a) Beim Besuch der Website
+
+Beim Aufrufen unserer Website werden durch den Hosting-Anbieter automatisch Informationen an den Server der Website übermittelt. Diese Informationen werden temporär in sogenannten Server-Logfiles gespeichert. Folgende Daten werden dabei ohne Ihr Zutun erfasst:
+
+IP-Adresse des anfragenden Endgeräts
+
+Datum und Uhrzeit des Zugriffs
+
+Name und URL der abgerufenen Datei
+
+Website, von der aus der Zugriff erfolgt (Referrer-URL)
+
+Verwendeter Browser und ggf. das Betriebssystem Ihres Rechners
+
+Zweck der Datenverarbeitung:
+Die genannten Daten werden verarbeitet, um einen reibungslosen Verbindungsaufbau der Website zu gewährleisten, die Systemsicherheit und -stabilität auszuwerten sowie zur technischen Administration.
+
+Rechtsgrundlage: Art. 6 Abs. 1 S. 1 lit. f DSGVO (berechtigtes Interesse)
+
+b) Bei Nutzung des Kontaktformulars oder E-Mail-Kontakts
+
+Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, werden folgende Daten verarbeitet:
+
+Name
+
+E-Mail-Adresse
+
+Nachrichtentext
+
+ggf. Telefonnummer
+
+Zweck der Datenverarbeitung:
+Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage und ggf. zur Terminvereinbarung oder weiterführender Kommunikation.
+
+Rechtsgrundlage: Art. 6 Abs. 1 S. 1 lit. b DSGVO (Vertragserfüllung / vorvertragliche Maßnahmen)
+
+3. Weitergabe von Daten
+
+Eine Übermittlung Ihrer persönlichen Daten an Dritte erfolgt nicht, außer:
+
+Sie haben Ihre ausdrückliche Einwilligung erteilt (Art. 6 Abs. 1 lit. a DSGVO)
+
+die Weitergabe ist gesetzlich zulässig und zur Vertragserfüllung erforderlich (Art. 6 Abs. 1 lit. b DSGVO)
+
+eine gesetzliche Verpflichtung besteht (Art. 6 Abs. 1 lit. c DSGVO)
+
+4. Dauer der Speicherung
+
+Personenbezogene Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich ist oder eine gesetzliche Aufbewahrungspflicht besteht.
+
+5. Ihre Rechte als betroffene Person
+
+Sie haben das Recht:
+
+auf Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO)
+
+auf Berichtigung unrichtiger oder Vervollständigung (Art. 16 DSGVO)
+
+auf Löschung Ihrer Daten (Art. 17 DSGVO)
+
+auf Einschränkung der Verarbeitung (Art. 18 DSGVO)
+
+auf Datenübertragbarkeit (Art. 20 DSGVO)
+
+auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)
+
+auf Widerruf einer bereits erteilten Einwilligung (Art. 7 Abs. 3 DSGVO)
+
+Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an:
+kontakt@zahnarzt-adali.de
+
+6. Beschwerderecht bei der Aufsichtsbehörde
+
+Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen geltendes Datenschutzrecht verstößt.
+
+Zuständige Aufsichtsbehörde:
+Berliner Beauftragte für Datenschutz und Informationsfreiheit
+Alt-Moabit 59–61, 10555 Berlin
+www.datenschutz-berlin.de
+
+7. SSL- bzw. TLS-Verschlüsselung
+
+Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung.
+
+8. Aktualität und Änderung dieser Datenschutzerklärung
+
+Diese Datenschutzerklärung ist aktuell gültig (Stand: Mai 2025).
+Durch Weiterentwicklung unserer Website oder gesetzliche Vorgaben kann eine Anpassung erforderlich werden. Die jeweils aktuelle Version finden Sie stets auf dieser Seite.
+
+9. Eingesetzte Dienste und Drittanbieter
+
+Google Maps
+Unsere Website nutzt Google Maps zur Darstellung des Praxisstandorts. Beim Laden der Karte werden personenbezogene Daten (z. B. IP-Adresse, Standortdaten) an Server der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland übermittelt.
+Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung über Cookie-Banner).
+Weitere Informationen: https://policies.google.com/privacy
+
+Google Translate
+Zur Anzeige mehrsprachiger Inhalte wird der Übersetzungsdienst Google Translate eingebunden. Beim Aktivieren dieses Dienstes werden Daten an Google übermittelt. Dies kann auch eine Datenübertragung in die USA beinhalten.
+Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
+Weitere Informationen: https://policies.google.com/privacy
+
+Google Analytics
+Zur anonymisierten Analyse des Besucherverhaltens verwenden wir Google Analytics mit IP-Anonymisierung („anonymizeIp“). Die Datenverarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+Speicherdauer: 14 Monate
+Anbieter: Google Ireland Limited
+Opt-out über unser Cookie-Banner oder unter: https://tools.google.com/dlpage/gaoptout
+
+Google Fonts
+Diese Website verwendet Schriftarten („Google Fonts“) der Google Ireland Limited. Um Ladezeiten und Designkonsistenz zu verbessern, wurden die Fonts lokal eingebunden.
+Es erfolgt keine Verbindung zu Google-Servern, sodass keine personenbezogenen Daten übermittelt werden.
+Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einheitlicher Darstellung).
+
+Cookie-Consent-Tool
+Zur Verwaltung Ihrer Datenschutzeinstellungen verwenden wir ein sogenanntes Consent Management Tool (z. B. „Cookiebot“ oder „Borlabs Cookie“).
+Dabei wird ein Cookie gesetzt, um Ihre Einwilligungen zu speichern.
+Es erfolgt keine Übertragung personenbezogener Daten an Drittstaaten.
+Rechtsgrundlage: Art. 6 Abs. 1 lit. c DSGVO (gesetzliche Verpflichtung), Art. 7 DSGVO (Nachweis von Einwilligungen)
+
+10. Cookie-Übersicht
+
+Cookie-Name
+
+Zweck
+
+Speicherdauer
+
+Anbieter
+
+_ga
+
+Nutzeranalyse (Google)
+
+14 Monate
+
+Google Analytics
+
+pll_language
+
+Sprachauswahl
+
+1 Jahr
+
+Eigene Website
+
+cb-enabled
+
+Zustimmung Cookie-Banner
+
+1 Jahr
+
+Cookie-Tool (z. B. Borlabs)
+
+ 
+
+Eine vollständige Übersicht über alle verwendeten Cookies sowie deren Zweck, Speicherdauer und Opt-out-Möglichkeiten finden Sie in unserem Cookie-Hinweis unter [Datenschutz-Einstellungen].
+
+11. Technisch-organisatorische Maßnahmen (TOM)
+
+Gemäß Art. 32 DSGVO setzen wir geeignete technische und organisatorische Maßnahmen um, um Ihre Daten vor unbefugtem Zugriff oder Missbrauch zu schützen. Dazu gehören insbesondere:
+
+SSL-/TLS-Verschlüsselung (HTTPS)
+
+Zugriffsschutz durch Passwortsysteme und Rollenverteilung
+
+Regelmäßige, verschlüsselte Backups auf getrennten Systemen
+
+Protokollierung sicherheitsrelevanter Vorgänge (z. B. Login-Versuche)
+
+Schulungen für Mitarbeitende zum Datenschutz
+
+Notfallkonzept für Datenschutzpannen mit Meldepflicht innerhalb von 72 Stunden
+
+12. Cookie-Banner / Einwilligungsmechanismus
+
+Beim ersten Aufruf unserer Website wird ein Cookie-Banner angezeigt. Dort haben Sie die Möglichkeit:
+
+technisch notwendige Cookies zu akzeptieren (Art. 6 Abs. 1 lit. f DSGVO)
+
+optionale Dienste wie Google Maps, Analytics oder Translate aktiv freizugeben (Art. 6 Abs. 1 lit. a DSGVO)
+
+Ihre Auswahl jederzeit zu ändern oder zu widerrufen
+
+Alle Einstellungen und Informationen finden Sie unter dem Link „Datenschutz-Einstellungen“ im Footer der Website.
+
+Startseite
+Impressum
+Datenschutzerklärung
+
+©Urheberrecht. Alle Rechte vorbehalten.
+
