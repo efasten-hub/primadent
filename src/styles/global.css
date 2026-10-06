@@ -1,14 +1,14 @@
 /*
  * Theme der Website – verbindliche Umsetzung von /DESIGN.md.
- * Alle Farben, Schriften, Größen und Abstände kommen ausschließlich von hier.
- * Die Tailwind-Standardpaletten (Farben, Schatten, Rundungen) sind bewusst
- * entfernt: Es gibt technisch keine Fremdfarben, keine Schatten, keine runden Ecken.
+ * Teil 1: Tokens aus dem Refero-Export (Namen und Werte 1:1).
+ * Teil 2: dokumentierte Ergänzungen aus „Anpassungen für Arztpraxis“ (A1–A11).
+ * Die Tailwind-Standardpaletten sind entfernt: Es gibt nur Utilities für Werte aus DESIGN.md.
  */
 @import "tailwindcss";
 @import "./fonts.css";
 
 @theme {
-  /* ---- Tailwind-Defaults entfernen (DESIGN.md: eine Tinte, flach, scharfkantig) ---- */
+  /* ---- Tailwind-Defaults entfernen ---- */
   --color-*: initial;
   --shadow-*: initial;
   --inset-shadow-*: initial;
@@ -16,91 +16,146 @@
   --text-shadow-*: initial;
   --radius-*: initial;
   --font-*: initial;
+  --font-weight-*: initial;
   --text-*: initial;
+  --leading-*: initial;
+  --tracking-*: initial;
+  --spacing: initial;      /* kein Zahlen-Spacing: nur die Export-Skala unten */
+  --container-*: initial;
 
-  /* ---- Farben (DESIGN.md · Colors) ---- */
-  --color-paper: #fafaf9;        /* Cream Paper – einzige Fläche */
-  --color-ink: #4a0a05;          /* Oxblood Ink – Text, Linien, Links, Buttons · 15,0:1 auf Paper */
-  --color-ink-muted: #764642;    /* Sekundärtext · 7,4:1 auf Paper (AAA) */
-  --color-ink-subtle: #885e5a;   /* Meta/Kleintext, Untergrenze · 5,3:1 auf Paper (AA) */
+  /* ================= Export · Tailwind v4 (1:1) ================= */
+  /* Colors */
+  --color-oxblood-ink: #4a0a05;
+  --color-cream-paper: #fafaf9;
+  --color-aged-linen: #f8f7f1;
+  --color-warm-stone: #bcb6a6;
+  --color-dusty-clay: #a2827f;   /* A2: für Text GESPERRT (3,3 : 1) */
+
+  /* Typography – Schriftfamilien: Export-Namen, Ersatzschriften nach A3
+     (Export-Fallback der Caslon war fälschlich sans-serif → korrigiert) */
+  --font-mier-a: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-caslon-ionic: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+
+  /* Typography – Scale (Werte 1:1; px als rem notiert, A1) */
+  --text-caption: 0.8125rem;     /* 13px */
+  --leading-caption: 1.2;
+  --text-body: 1.125rem;         /* 18px */
+  --leading-body: 1.2;
+  --text-subheading: 1.5rem;     /* 24px */
+  --leading-subheading: 1.2;
+  --text-heading: 1.625rem;      /* 26px */
+  --leading-heading: 1.2;
+
+  /* Typography – Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+
+  /* Border Radius */
+  --radius-full: 9999px;         /* A5: auf dieser Website nicht verwendet */
+
+  /* ================= Ergänzungen (DESIGN.md · Anpassungen) ================= */
+  /* A2: abgestufte Oxblood-Töne für Sekundärtext – nur auf Cream Paper / Aged Linen */
+  --color-oxblood-muted: #764642;    /* 7,4 : 1 */
+  --color-oxblood-subtle: #885e5a;   /* 5,3 : 1 – Untergrenze */
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* ---- Schriften (DESIGN.md · Typography, Anpassungen für Arztpraxis) ---- */
-  --font-display: "Libre Caslon Display", "Libre Caslon Text", Georgia, "Times New Roman", serif;
-  --font-serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* A3: Display-Schnitt für vergrößerte Headlines */
+  --font-caslon-display: "Libre Caslon Display", "Libre Caslon Text", Georgia, "Times New Roman", serif;
 
-  /* ---- Typo-Skala: feste Stufen, keine Zwischengrößen ---- */
-  --text-label: 0.875rem;                                           /* 14px Uppercase-Labels, Meta */
-  --text-label--line-height: 1.4;
-  --text-label--letter-spacing: 0.08em;
-  --text-ui: 1rem;                                                  /* 16px Navigation, Buttons, Captions */
-  --text-ui--line-height: 1.45;
-  --text-body: 1.125rem;                                            /* 18px Fließtext (Mindestgröße) */
-  --text-body--line-height: 1.65;
-  --text-lead: 1.3125rem;                                           /* 21px Antwortabsätze, Intro */
-  --text-lead--line-height: 1.55;
-  --text-h3: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);            /* 22→26px  Caslon Text */
-  --text-h3--line-height: 1.25;
-  --text-h2: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);              /* 28→40px  Caslon Display */
-  --text-h2--line-height: 1.15;
-  --text-h1: clamp(2.25rem, 1.75rem + 2.1vw, 3.5rem);               /* 36→56px  Caslon Display */
-  --text-h1--line-height: 1.08;
-  --text-hero: clamp(2.625rem, 1.85rem + 3.4vw, 4.75rem);           /* 42→76px  Caslon Display */
-  --text-hero--line-height: 1.03;
+  /* A4: Lesbarkeit – angepasste Größen/Zeilenhöhen (Export-Tokens oben bleiben unverändert) */
+  --text-caption: 0.875rem;                                  /* 14px statt 13px */
+  --text-caption--line-height: 1.4;
+  --text-nav: 1rem;                                          /* 16px statt 14px */
+  --text-nav--line-height: 1.4;
+  --text-body--line-height: 1.6;                             /* statt 1.2 */
+  --text-heading--line-height: 1.35;
+  --text-subheading--line-height: 1.2;
+  --text-title: clamp(1.75rem, 1.45rem + 1.25vw, 2.5rem);    /* H2 28→40px */
+  --text-title--line-height: 1.15;
+  --text-display: clamp(2.25rem, 1.75rem + 2.1vw, 3.5rem);   /* H1 36→56px */
+  --text-display--line-height: 1.1;
+  --text-hero: clamp(2.625rem, 1.85rem + 3.4vw, 4.75rem);    /* Hero 42→76px */
+  --text-hero--line-height: 1.05;
 
-  /* ---- Abstände (8er-Raster, großzügig) ---- */
-  --spacing: 0.25rem;
-  --spacing-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);            /* Seitenrand 16→40px */
-  --spacing-section: clamp(4.5rem, 3rem + 6vw, 10rem);              /* Abstand zwischen Sektionen 72→160px */
+  /* A5: Klickfläche */
+  --spacing-44: 44px;
+  --spacing-0: 0px;
+  --spacing-px: 1px;
 
-  /* ---- Breiten ---- */
-  --container-page: 90rem;   /* 1440px Seitenraster */
-  --container-text: 42rem;   /* ~70 Zeichen Lesebreite */
+  /* A5: Breiten */
+  --container-page: 1200px;      /* = --page-max-width */
+  --container-text: 42rem;       /* Lesebreite ≈ 70 Zeichen */
+  --container-label: 120px;      /* Sidebar Section Label */
+}
 
-  /* ---- Linien ---- */
-  --default-border-width: 1px;
+/* ================= Export · CSS Custom Properties (Layout, Radien, Surfaces – 1:1) ================= */
+:root {
+  --spacing-unit: 4px;
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 0px;
+  --element-gap: 12px;
+  --radius-tags: 9999px;
+  --radius-cards: 0px;
+  --radius-pills: 9999px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+  --surface-cream-paper: #fafaf9;
+  --surface-aged-linen: #f8f7f1;
+  --surface-warm-stone: #bcb6a6;
 }
 
 /* ================= Basis ================= */
 @layer base {
   html {
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-size: 100%;
+    background: var(--color-cream-paper);
+    color: var(--color-oxblood-ink);
+    font-family: var(--font-mier-a);
+    font-weight: 400;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 96px;
   }
   body {
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
-    background: var(--color-paper);
-    color: var(--color-ink);
   }
   *, ::before, ::after {
-    border-color: var(--color-ink);
-    box-shadow: none !important;   /* DESIGN.md: keine Schatten – auch nicht aus Browser-Defaults */
-    border-radius: 0;
+    border-color: var(--color-oxblood-ink);
+    box-shadow: none !important;   /* keine Schatten – auch nicht aus Browser-Defaults */
+    border-radius: 0;              /* A5: ausnahmslos scharfe Ecken */
   }
-  h1, h2 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; }
-  h3, h4 { font-family: var(--font-serif); font-weight: 400; text-wrap: balance; }
-  h1 { font-size: var(--text-h1); line-height: var(--text-h1--line-height); letter-spacing: -0.01em; }
-  h2 { font-size: var(--text-h2); line-height: var(--text-h2--line-height); letter-spacing: -0.005em; }
-  h3 { font-size: var(--text-h3); line-height: var(--text-h3--line-height); }
-  h4 { font-size: var(--text-lead); line-height: var(--text-lead--line-height); }
-  p, li { text-wrap: pretty; hyphens: auto; overflow-wrap: break-word; }
+  /* Nur Gewicht 400 (A3) – auch für Überschriften, <strong>, <b> */
+  h1, h2, h3, h4, h5, h6, strong, b, th, button, input, select, textarea { font-weight: 400; }
+  h1, h2 { font-family: var(--font-caslon-display); text-wrap: balance; }
+  h3, h4 { font-family: var(--font-caslon-ionic); text-wrap: balance; }
+  h1 { font-size: var(--text-display); line-height: var(--text-display--line-height); }
+  h2 { font-size: var(--text-title); line-height: var(--text-title--line-height); }
+  h3 { font-size: var(--text-subheading); line-height: var(--text-subheading--line-height); }
+  h4 { font-family: var(--font-mier-a); font-size: var(--text-heading); line-height: var(--text-heading--line-height); }
+  p, li, dd { text-wrap: pretty; hyphens: auto; overflow-wrap: break-word; }
   a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  ::selection { background: var(--color-oxblood-ink); color: var(--color-cream-paper); }
 
-  /* Gut sichtbarer Fokus (WCAG 2.2 · 2.4.7 / 2.4.11) */
-  :focus-visible {
-    outline: 2px solid var(--color-ink);
-    outline-offset: 3px;
-  }
+  /* Gut sichtbarer Fokus (WCAG 2.4.7 / 2.4.11) */
+  :focus-visible { outline: 2px solid var(--color-oxblood-ink); outline-offset: 3px; }
+
   @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   }
@@ -110,81 +165,113 @@
 @layer components {
   .container-page {
     width: 100%;
-    max-width: var(--container-page);
+    max-width: var(--page-max-width);
     margin-inline: auto;
-    padding-inline: var(--spacing-gutter);
+    padding-inline: var(--spacing-16);
   }
-  .section { padding-block: var(--spacing-section); }
+  @media (min-width: 48rem) { .container-page { padding-inline: var(--spacing-24); } }
+  @media (min-width: 80rem) { .container-page { padding-inline: var(--spacing-40); } }
+  .section { padding-block: var(--section-gap); }
 
-  /* Uppercase-Label: Großschreibung NUR per CSS, damit lang="tr" i → İ korrekt umsetzt */
-  .label {
-    font-family: var(--font-sans);
-    font-size: var(--text-label);
-    line-height: var(--text-label--line-height);
-    letter-spacing: var(--text-label--letter-spacing);
-    text-transform: uppercase;
-    font-weight: 500;
+  /* Typo-Rollen */
+  .hero-title { font-family: var(--font-caslon-display); font-size: var(--text-hero); line-height: var(--text-hero--line-height); }
+  .kategorie { font-family: var(--font-caslon-ionic); font-size: var(--text-subheading); line-height: var(--text-subheading--line-height); }
+  .intro { font-size: var(--text-heading); line-height: var(--text-heading--line-height); }
+  .caption { font-size: var(--text-caption); line-height: var(--text-caption--line-height); color: var(--color-oxblood-muted); }
+  .label { font-size: var(--text-caption); line-height: var(--text-caption--line-height); }
+
+  /* Sidebar Section Label (Export): Label links in ~120px-Spalte, Haarlinie über die Breite */
+  .sektion-kopf {
+    display: grid;
+    gap: var(--spacing-12);
+    border-top: 1px solid var(--color-oxblood-ink);
+    padding-top: var(--spacing-12);
   }
-  .kategorie { font-family: var(--font-serif); font-size: var(--text-h3); line-height: var(--text-h3--line-height); }
-  .hero-title { font-family: var(--font-display); font-size: var(--text-hero); line-height: var(--text-hero--line-height); letter-spacing: -0.015em; }
-  .lead { font-size: var(--text-lead); line-height: var(--text-lead--line-height); }
-  .meta { font-size: var(--text-ui); line-height: var(--text-ui--line-height); color: var(--color-ink-muted); }
+  @media (min-width: 48rem) {
+    .sektion-kopf { grid-template-columns: var(--container-label) 1fr; column-gap: var(--spacing-24); }
+  }
 
-  .hairline { border: 0; border-top: 1px solid var(--color-ink); }
+  .hairline { border: 0; border-top: 1px solid var(--color-oxblood-ink); }
 
-  /* Links im Fließtext und Navigation */
+  /* Textlink / Outlined Action (Export): 1px Unterstreichung, Hover 1.5px.
+     Als text-decoration statt border-bottom, damit die Klickfläche 44px hoch sein kann (A5). */
+  .link-action {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--spacing-44);
+    font-size: var(--text-nav);
+    line-height: var(--text-nav--line-height);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+  .link-action:hover { text-decoration-thickness: 1.5px; }
+  /* Fließtext-Links */
   .link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
-  .link:hover { text-decoration-thickness: 2px; }
-  .nav-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; min-width: 2.75rem; text-decoration: none; }   /* 44 × 44px Klickfläche */
-  .nav-link:hover, .nav-link[aria-current]:not([aria-current="false"]) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em; }
+  .link:hover { text-decoration-thickness: 1.5px; }
 
-  /* Buttons – flach, scharfkantig, keine festen Breiten (lange Übersetzungen) */
+  /* Navigation: 44 × 44px Klickfläche */
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--spacing-44);
+    min-width: var(--spacing-44);
+    font-size: var(--text-nav);
+    line-height: var(--text-nav--line-height);
+    text-decoration: none;
+  }
+  .nav-link:hover, .nav-link[aria-current]:not([aria-current="false"]) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+  }
+
+  /* Buttons (A6) – flach, scharfkantig, keine festen Breiten */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.625rem;
-    min-height: 3rem;                    /* 48px Klickfläche */
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-sans);
-    font-size: var(--text-ui);
+    gap: var(--spacing-8);
+    min-height: var(--spacing-48);
+    padding: var(--spacing-12) var(--spacing-24);
+    font-family: var(--font-mier-a);
+    font-size: var(--text-nav);
     line-height: 1.25;
-    font-weight: 500;
     text-align: center;
     text-decoration: none;
-    border: 1px solid var(--color-ink);
+    border: 1px solid var(--color-oxblood-ink);
     cursor: pointer;
     transition: background-color 150ms ease, color 150ms ease;
   }
-  .btn-primary { background: var(--color-ink); color: var(--color-paper); }
-  .btn-primary:hover { background: var(--color-paper); color: var(--color-ink); }
-  .btn-outline { background: transparent; color: var(--color-ink); }
-  .btn-outline:hover { background: var(--color-ink); color: var(--color-paper); }
-  .btn-compact { min-height: 2.75rem; padding: 0.5rem 1rem; }
+  .btn-primary { background: var(--color-oxblood-ink); color: var(--color-cream-paper); }
+  .btn-primary:hover { background: var(--color-cream-paper); color: var(--color-oxblood-ink); }
+  .btn-outline { background: transparent; color: var(--color-oxblood-ink); }
+  .btn-outline:hover { background: var(--color-oxblood-ink); color: var(--color-cream-paper); }
+  .btn-compact { min-height: var(--spacing-44); padding: var(--spacing-8) var(--spacing-16); }
 
   /* Formularfelder */
   .field {
     width: 100%;
-    min-height: 3rem;
-    padding: 0.75rem 1rem;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    border: 1px solid var(--color-ink);
+    min-height: var(--spacing-48);
+    padding: var(--spacing-12) var(--spacing-16);
+    background: var(--color-cream-paper);
+    color: var(--color-oxblood-ink);
+    border: 1px solid var(--color-oxblood-ink);
     font-size: var(--text-body);
   }
-  .field::placeholder { color: var(--color-ink-subtle); opacity: 1; }
+  .field::placeholder { color: var(--color-oxblood-subtle); opacity: 1; }
 
   /* Menü ohne JavaScript (<details>) */
   .menue > summary::-webkit-details-marker { display: none; }
   .menue[open] .menue-zeichen { transform: rotate(45deg); }
-  .menue-zeichen { display: inline-block; font-size: var(--text-h3); line-height: 1; transition: transform 150ms ease; }
+  .menue-zeichen { display: inline-block; font-size: var(--text-subheading); line-height: 1; transition: transform 150ms ease; }
 
-  /* Bild-Platzhalter „FOTO FOLGT“ (nur wo weder echtes Foto noch Stock zulässig ist) */
+  /* Bildfläche „FOTO FOLGT“ – nur wo weder echtes Foto noch Stock zulässig ist */
   .foto-folgt {
     display: grid;
     place-items: center;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    border: 1px solid var(--color-ink);
+    background: var(--color-aged-linen);
+    color: var(--color-oxblood-ink);
   }
 }

@@ -20,16 +20,16 @@ interface Props {
 const { aktuell, links, label, class: klasse = "" } = Astro.props;
 ---
 <nav aria-label={label} class:list={["sprachumschalter", klasse]}>
-  <ul class="flex flex-wrap items-center text-ui">
+  <ul class="flex flex-wrap items-center">
     {links.map((l, i) => (
       <li class="flex items-center">
-        {i > 0 && <span aria-hidden="true" class="text-ink-muted">·</span>}
+        {i > 0 && <span aria-hidden="true" class="text-oxblood-muted">·</span>}
         <a
           href={l.href}
           hreflang={l.code}
           lang={l.code}
           aria-current={l.code === aktuell ? "true" : undefined}
-          class="nav-link min-w-11 justify-center"
+          class="nav-link"
         >
           {l.code.toUpperCase()}<span class="sr-only"> {l.name}</span>
         </a>

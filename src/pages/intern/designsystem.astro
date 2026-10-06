@@ -2,11 +2,17 @@
 /**
  * INTERNE Vorschau des Designsystems (Phase-1-Checkpoint).
  * noindex, nicht in der Sitemap, wird beim Deployment ausgeschlossen (Phase 7).
- * Alle Inhalte hier sind Musterdaten – die echten Praxisdaten kommen in Phase 2 aus src/config/site.ts.
+ * Inhalte sind Musterdaten – echte Praxisdaten kommen in Phase 2 aus src/config/site.ts.
  */
 import "../../styles/global.css";
+import { Picture } from "astro:assets";
 import Sprachumschalter from "../../components/Sprachumschalter.astro";
 import MobileLeiste from "../../components/MobileLeiste.astro";
+import portraet from "../../assets/fotos/dr-ufuk-adali-portraet.png";
+
+// Vorläufig hier – wandert in Phase 2 nach src/config/site.ts
+const doctolib = "https://www.doctolib.de/zahnarztpraxis/berlin/zahnarztpraxis-dr-adali";
+const tel = "tel:+49304426843";
 
 const sprachen = [
   { code: "de", href: "#", name: "Deutsch" },
@@ -14,25 +20,27 @@ const sprachen = [
   { code: "es", href: "#", name: "Español" },
   { code: "tr", href: "#", name: "Türkçe" },
 ];
-
 const nav = ["Leistungen", "Über Dr. Adali", "Praxis & Team", "Ratgeber", "FAQ", "Termin & Kontakt"];
 
 const farben = [
-  { name: "Cream Paper", token: "--color-paper", hex: "#fafaf9", bg: "bg-paper", rolle: "einzige Fläche", kontrast: "–" },
-  { name: "Oxblood Ink", token: "--color-ink", hex: "#4a0a05", bg: "bg-ink", rolle: "Text, Linien, Links, Buttons", kontrast: "15,0 : 1 · AAA" },
-  { name: "Oxblood Muted", token: "--color-ink-muted", hex: "#764642", bg: "bg-ink-muted", rolle: "Sekundärtext", kontrast: "7,4 : 1 · AAA" },
-  { name: "Oxblood Subtle", token: "--color-ink-subtle", hex: "#885e5a", bg: "bg-ink-subtle", rolle: "Meta, Platzhalter (Untergrenze)", kontrast: "5,3 : 1 · AA" },
+  { name: "Oxblood Ink", token: "--color-oxblood-ink", hex: "#4a0a05", bg: "bg-oxblood-ink", herkunft: "Export", rolle: "Text, Linien, Links, Buttons", kontrast: "15,0 : 1 · AAA" },
+  { name: "Cream Paper", token: "--color-cream-paper", hex: "#fafaf9", bg: "bg-cream-paper", herkunft: "Export", rolle: "Seitenfläche", kontrast: "Fläche" },
+  { name: "Aged Linen", token: "--color-aged-linen", hex: "#f8f7f1", bg: "bg-aged-linen", herkunft: "Export", rolle: "stille Zweitfläche", kontrast: "Fläche · Ink 14,6 : 1" },
+  { name: "Warm Stone", token: "--color-warm-stone", hex: "#bcb6a6", bg: "bg-warm-stone", herkunft: "Export", rolle: "Fläche/Trennlinie, darauf nur Ink", kontrast: "Fläche · Ink 7,8 : 1" },
+  { name: "Dusty Clay", token: "--color-dusty-clay", hex: "#a2827f", bg: "bg-dusty-clay", herkunft: "Export", rolle: "für Text gesperrt", kontrast: "3,3 : 1 · fällt durch" },
+  { name: "Oxblood Muted", token: "--color-oxblood-muted", hex: "#764642", bg: "bg-oxblood-muted", herkunft: "Ergänzung A2", rolle: "Sekundärtext, Captions", kontrast: "7,4 : 1 · AAA" },
+  { name: "Oxblood Subtle", token: "--color-oxblood-subtle", hex: "#885e5a", bg: "bg-oxblood-subtle", herkunft: "Ergänzung A2", rolle: "Untergrenze, Platzhalter", kontrast: "5,3 : 1 · AA" },
 ];
 
 const stufen = [
-  { cls: "hero-title", name: "Hero · Caslon Display", groesse: "42→76px (clamp)" },
-  { cls: "text-h1 font-display", name: "H1 · Caslon Display", groesse: "36→56px (clamp)" },
-  { cls: "text-h2 font-display", name: "H2 · Caslon Display", groesse: "28→40px (clamp)" },
-  { cls: "text-h3 font-serif", name: "H3 / Kategorie · Caslon Text", groesse: "22→26px (clamp)" },
-  { cls: "text-lead font-sans", name: "Lead · Inter", groesse: "21px" },
-  { cls: "text-body font-sans", name: "Body · Inter", groesse: "18px" },
-  { cls: "text-ui font-sans", name: "UI / Navigation · Inter", groesse: "16px" },
-  { cls: "label", name: "Label · Inter uppercase", groesse: "14px · +0,08em" },
+  { cls: "hero-title", name: "Hero · Caslon Display", groesse: "42→76px · Abweichung" },
+  { cls: "text-display font-caslon-display", name: "H1 · Caslon Display", groesse: "36→56px · Abweichung" },
+  { cls: "text-title font-caslon-display", name: "H2 · Caslon Display", groesse: "28→40px · Abweichung" },
+  { cls: "text-subheading font-caslon-ionic", name: "Subheading · Caslon Text", groesse: "24px · Export" },
+  { cls: "text-heading font-mier-a", name: "Heading/Intro · Inter", groesse: "26px · Export" },
+  { cls: "text-body font-mier-a", name: "Body · Inter", groesse: "18px · Export" },
+  { cls: "text-nav font-mier-a", name: "Navigation · Inter", groesse: "16px · statt 14px" },
+  { cls: "text-caption font-mier-a", name: "Caption · Inter", groesse: "14px · statt 13px" },
 ];
 
 const zeichenproben = [
@@ -40,6 +48,13 @@ const zeichenproben = [
   { lang: "en", text: "Resin-bonded bridge (Maryland bridge) · English-speaking dentist" },
   { lang: "es", text: "¿Puente adhesivo? ¡Sí! · Niño, España, implantación, Odontología" },
   { lang: "tr", text: "Diş hekimi · Yapışkan köprü · Ağız, çene, Iğdır, İstanbul, şikâyet, ışık" },
+];
+
+const schwerpunkte = [
+  { t: "Zahnersatz", m: "Kronen, Brücken, Prothesen" },
+  { t: "Implantologie", m: "Planung, Sofortversorgung" },
+  { t: "Ästhetik", m: "Veneers, Bleaching, Aligner" },
+  { t: "CMD & Schienen", m: "Knirschen, Kiefergelenk" },
 ];
 ---
 <!doctype html>
@@ -49,39 +64,42 @@ const zeichenproben = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Designsystem (intern) · Zahnarztpraxis Dr. Adali</title>
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/libre-caslon-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   </head>
-  <body class="pb-[calc(3.5rem+1px+env(safe-area-inset-bottom))] md:pb-0">
-    <a href="#inhalt" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:p-3">Zum Inhalt springen</a>
+  <body class="pb-[calc(57px+env(safe-area-inset-bottom))] md:pb-0">
+    <a href="#inhalt" class="sr-only focus:not-sr-only focus:absolute focus:left-16 focus:top-16 focus:z-50 focus:bg-cream-paper focus:p-12">Zum Inhalt springen</a>
 
-    <!-- ===================== Header (Muster) ===================== -->
-    <header class="border-b border-ink">
-      <div class="container-page flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4">
-        <a href="#" class="inline-flex min-h-11 items-center font-serif text-h3 whitespace-nowrap no-underline">Zahnarztpraxis Dr. Adali</a>
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+    <!-- ===================== Header (A8) ===================== -->
+    <header class="border-b border-oxblood-ink">
+      <div class="container-page flex flex-wrap items-center justify-between gap-x-32 gap-y-4 py-12">
+        <a href="#" class="inline-flex min-h-44 items-center whitespace-nowrap font-caslon-ionic text-subheading no-underline">Zahnarztpraxis Dr. Adali</a>
+        <div class="flex flex-wrap items-center gap-x-24 gap-y-8">
           <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen" class="whitespace-nowrap" />
-          <a href="tel:+49304426843" class="nav-link hidden whitespace-nowrap text-ui md:inline-flex">030 44 26 84 3</a>
-          <a href="#" class="btn btn-primary btn-compact hidden whitespace-nowrap md:inline-flex">Online-Termin</a>
+          <a href={tel} class="nav-link hidden whitespace-nowrap md:inline-flex">030 44 26 84 3</a>
+          <a href={doctolib} target="_blank" rel="noopener" class="btn btn-primary btn-compact hidden whitespace-nowrap md:inline-flex">
+            Online-Termin<span class="sr-only"> (über Doctolib, öffnet in neuem Fenster)</span>
+          </a>
         </div>
       </div>
-      <!-- Menü unter 1024px: <details> funktioniert ohne JavaScript -->
-      <details class="menue border-t border-ink lg:hidden">
-        <summary class="container-page label flex min-h-12 cursor-pointer list-none items-center justify-between">
+      <details class="menue border-t border-oxblood-ink lg:hidden">
+        <summary class="container-page label flex min-h-48 cursor-pointer list-none items-center justify-between">
           <span>Menü</span><span aria-hidden="true" class="menue-zeichen">+</span>
         </summary>
-        <nav aria-label="Hauptnavigation (mobil)" class="container-page border-t border-ink pb-6">
-          <ul class="text-body">
+        <nav aria-label="Hauptnavigation (mobil)" class="container-page border-t border-oxblood-ink pb-24">
+          <ul>
             {nav.map((n, i) => (
-              <li class="border-b border-ink"><a class="nav-link w-full min-h-12 justify-start" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
+              <li class="border-b border-oxblood-ink"><a class="nav-link min-h-48 w-full justify-start" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
             ))}
           </ul>
-          <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Menü)" class="mt-4" />
-          <a href="tel:+49304426843" class="btn btn-outline mt-4 w-full">030 44 26 84 3 anrufen</a>
+          <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Menü)" class="mt-16" />
+          <a href={tel} class="btn btn-outline mt-16 w-full">030 44 26 84 3 anrufen</a>
         </nav>
       </details>
-      <nav aria-label="Hauptnavigation" class="hidden border-t border-ink lg:block">
-        <ul class="container-page flex flex-wrap gap-x-8 py-1 text-ui">
+      <nav aria-label="Hauptnavigation" class="hidden border-t border-oxblood-ink lg:block">
+        <ul class="container-page flex flex-wrap gap-x-24 py-4">
           {nav.map((n, i) => (
             <li><a class="nav-link" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
           ))}
@@ -90,30 +108,28 @@ const zeichenproben = [
     </header>
 
     <main id="inhalt">
-      <!-- ===================== Hero (Muster) ===================== -->
-      <section class="container-page grid gap-10 py-12 md:grid-cols-12 md:items-end md:py-20">
-        <div class="md:col-span-6">
-          <p class="label mb-6">Designsystem · Phase 1</p>
+      <!-- ===================== Hero (A7): Text neben dem Foto, nie darauf ===================== -->
+      <section class="container-page grid gap-40 py-48 md:grid-cols-2 md:items-end md:py-80">
+        <div>
+          <p class="caption mb-24">Designsystem · Phase 1</p>
           <h1 class="hero-title">Zahnmedizin auf universitärem Niveau.</h1>
-          <p class="lead mt-6 text-ink-muted">Zahnarztpraxis Dr. Adali · Schönhauser Allee, Berlin-Mitte</p>
-          <div class="mt-10 flex flex-wrap gap-3">
-            <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-              Online-Termin buchen <span class="sr-only">(öffnet in neuem Fenster)</span>
+          <p class="intro mt-24 text-oxblood-muted">Zahnarztpraxis Dr. Adali · Schönhauser Allee, Berlin-Mitte</p>
+          <div class="mt-40 flex flex-wrap gap-12">
+            <a href={doctolib} class="btn btn-primary" target="_blank" rel="noopener">
+              Online-Termin buchen<span class="sr-only"> (öffnet in neuem Fenster)</span>
             </a>
-            <a href="tel:+49304426843" class="btn btn-outline">030 44 26 84 3 anrufen</a>
+            <a href={tel} class="btn btn-outline">030 44 26 84 3 anrufen</a>
           </div>
-          <p class="meta mt-4">über Doctolib</p>
+          <p class="caption mt-12">über Doctolib</p>
         </div>
-        <div class="md:col-span-6">
-          <div class="foto-folgt aspect-[4/5] w-full md:aspect-[4/5]">
-            <span class="label">Fotofläche · Porträt / Praxisfoto (Phase 3)</span>
-          </div>
+        <div class="foto-folgt aspect-[4/3] w-full">
+          <span class="label max-w-[24ch] px-24 text-center">Hero-Bild: atmosphärisches Stockfoto ohne Personen (Phase 3)</span>
         </div>
       </section>
 
       <!-- Vertrauensleiste -->
-      <section aria-label="Qualifikationen" class="border-y border-ink">
-        <ul class="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-5 text-ui">
+      <section aria-label="Qualifikationen" class="border-y border-oxblood-ink">
+        <ul class="container-page flex flex-wrap items-center gap-x-16 gap-y-4 py-20 text-nav">
           <li>Charité</li><li aria-hidden="true">·</li>
           <li>DGPro</li><li aria-hidden="true">·</li>
           <li>DGI</li><li aria-hidden="true">·</li>
@@ -122,128 +138,147 @@ const zeichenproben = [
         </ul>
       </section>
 
+      <!-- ===================== Schwerpunkt-Raster (Product Category Card) ===================== -->
+      <section class="container-page section">
+        <div class="sektion-kopf">
+          <p class="label">Schwerpunkte</p>
+          <h2>Wofür Patienten aus ganz Berlin kommen</h2>
+        </div>
+        <ul class="mt-40 grid gap-x-12 gap-y-40 sm:grid-cols-2 lg:grid-cols-4">
+          {schwerpunkte.map((s) => (
+            <li>
+              <div class="foto-folgt aspect-[4/3]"><span class="label">Stockfoto (Phase 3)</span></div>
+              <h3 class="mt-12">{s.t}</h3>
+              <p class="caption mt-4">{s.m}</p>
+              <a href="#" class="link-action mt-4">Mehr erfahren<span class="sr-only"> zu {s.t}</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- ===================== Teaser Dr. Adali mit echtem Porträt ===================== -->
+      <section class="container-page section">
+        <div class="sektion-kopf">
+          <p class="label">Über Dr. Adali</p>
+          <div class="grid gap-40 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-start">
+            <Picture
+              src={portraet}
+              formats={["avif", "webp"]}
+              widths={[320, 480, 640, 768]}
+              sizes="(min-width: 768px) 40vw, 100vw"
+              alt="Porträt von Dr. Ufuk Adali"
+              class="w-full"
+              loading="lazy"
+            />
+            <div>
+              <h2>Dr. Ufuk Adali</h2>
+              <p class="intro mt-24">Viele Jahre leitender Oberarzt an der Charité – Universitätsmedizin Berlin. Spezialist für Prothetik (DGPro), zertifizierter Implantologe (DGI).</p>
+              <p class="mt-24 max-w-text">Musterabsatz in 18px mit Zeilenhöhe 1.6 – so liest sich längerer Fließtext auch für ältere Patienten angenehm. Der Export sah 1.2 vor; die Anpassung ist in DESIGN.md (A4) begründet.</p>
+              <a href="#" class="link-action mt-16">Werdegang und Qualifikationen</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Terminbuchung (Muster, Modus „link“) ===================== -->
+      <section class="container-page section">
+        <div class="sektion-kopf">
+          <p class="label">Termin</p>
+          <div class="bg-aged-linen p-24 md:p-40">
+            <h2>Termin vereinbaren</h2>
+            <p class="mt-16 max-w-text">Termine können Sie rund um die Uhr online über Doctolib buchen – oder telefonisch während der Sprechzeiten.</p>
+            <div class="mt-24 flex flex-wrap gap-12">
+              <a href={doctolib} class="btn btn-primary" target="_blank" rel="noopener">Online-Termin buchen<span class="sr-only"> (öffnet in neuem Fenster)</span></a>
+              <a href={tel} class="btn btn-outline">030 44 26 84 3 anrufen</a>
+            </div>
+            <p class="caption mt-12">über Doctolib · öffnet in neuem Fenster</p>
+          </div>
+        </div>
+      </section>
+
       <!-- ===================== Farben ===================== -->
       <section class="container-page section">
-        <h2>Farben &amp; Kontraste</h2>
-        <p class="mt-4 max-w-text text-ink-muted">Eine Fläche, eine Tinte. Abgestufte Oxblood-Töne nur für Sekundärtext und nur oberhalb von 4,5 : 1 (WCAG 2.2 AA).</p>
-        <div class="mt-10 grid border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
-          {farben.map((f) => (
-            <div class="border-b border-ink py-6 sm:pr-6">
-              <div class:list={["mb-4 h-24 border border-ink", f.bg]}></div>
-              <p class="font-serif text-h3">{f.name}</p>
-              <p class="meta mt-1">{f.hex} · <code>{f.token}</code></p>
-              <p class="mt-2 text-ui">{f.rolle}</p>
-              <p class="label mt-2">{f.kontrast}</p>
-            </div>
-          ))}
+        <div class="sektion-kopf">
+          <p class="label">Farben</p>
+          <div>
+            <h2>Farben &amp; Kontraste</h2>
+            <p class="mt-16 max-w-text text-oxblood-muted">Alle Tokens des Exports 1:1. Dusty Clay ist für Text gesperrt (3,3 : 1); dafür zwei geprüfte Oxblood-Abstufungen.</p>
+            <ul class="mt-40 grid gap-x-24 sm:grid-cols-2 lg:grid-cols-4">
+              {farben.map((f) => (
+                <li class="border-t border-oxblood-ink py-24">
+                  <div class:list={["mb-16 h-80 border border-oxblood-ink", f.bg]}></div>
+                  <h3>{f.name}</h3>
+                  <p class="caption mt-4">{f.hex} · <code>{f.token}</code></p>
+                  <p class="mt-8 text-nav">{f.rolle}</p>
+                  <p class="caption mt-4">{f.herkunft} · {f.kontrast}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
       <!-- ===================== Typografie ===================== -->
-      <section class="container-page section border-t border-ink">
-        <h2>Typografie</h2>
-        <div class="mt-10">
-          {stufen.map((s) => (
-            <div class="grid gap-2 border-t border-ink py-6 md:grid-cols-12">
-              <div class="md:col-span-3">
-                <p class="text-ui">{s.name}</p>
-                <p class="meta">{s.groesse}</p>
-              </div>
-              <p class:list={["md:col-span-9", s.cls]}>Implantat oder Klebebrücke?</p>
-            </div>
-          ))}
-        </div>
-
-        <h3 class="mt-16">Sonderzeichen in allen Schnitten</h3>
-        <div class="mt-6 border-t border-ink">
-          {zeichenproben.map((z) => (
-            <div lang={z.lang} class="grid gap-3 border-b border-ink py-5 md:grid-cols-12">
-              <p class="label md:col-span-2">{z.lang}</p>
-              <div class="space-y-2 md:col-span-10">
-                <p class="font-display text-h2">{z.text}</p>
-                <p class="font-serif text-h3">{z.text}</p>
-                <p class="font-serif text-h3 italic">{z.text}</p>
-                <p class="font-serif text-h3 font-bold">{z.text}</p>
-                <p class="text-body">{z.text}</p>
-                <p class="text-body font-medium">{z.text}</p>
-                <p class="text-body font-semibold">{z.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <h3 class="mt-16">Uppercase per CSS mit lang-Attribut</h3>
-        <div class="mt-6 grid gap-4 border-t border-ink pt-6 md:grid-cols-2">
-          <p><span class="meta block">lang="tr", Quelltext „iletişim ve randevu“</span><span lang="tr" class="label">iletişim ve randevu</span></p>
-          <p><span class="meta block">lang="de", Quelltext „Sprechzeiten & Anfahrt“</span><span lang="de" class="label">Sprechzeiten &amp; Anfahrt</span></p>
-        </div>
-      </section>
-
-      <!-- ===================== Buttons & Terminbuchung ===================== -->
-      <section class="container-page section border-t border-ink">
-        <h2>Buttons &amp; Terminbuchung</h2>
-        <div class="mt-10 grid gap-10 md:grid-cols-2">
+      <section class="container-page section">
+        <div class="sektion-kopf">
+          <p class="label">Typografie</p>
           <div>
-            <p class="label mb-4">Standard</p>
-            <div class="flex flex-wrap gap-3">
-              <a href="#" class="btn btn-primary">Online-Termin buchen</a>
-              <a href="tel:+49304426843" class="btn btn-outline">030 44 26 84 3 anrufen</a>
+            <h2>Acht Stufen, nur Gewicht 400</h2>
+            <div class="mt-40">
+              {stufen.map((s) => (
+                <div class="grid gap-8 border-t border-oxblood-ink py-24 md:grid-cols-[200px_1fr]">
+                  <div>
+                    <p class="text-nav">{s.name}</p>
+                    <p class="caption">{s.groesse}</p>
+                  </div>
+                  <p class={s.cls}>Implantat oder Klebebrücke?</p>
+                </div>
+              ))}
             </div>
-            <p class="label mb-4 mt-8">Längste Übersetzungen (Layout-Test)</p>
-            <div class="flex flex-wrap gap-3">
-              <a href="#" class="btn btn-primary" lang="es">Reservar cita en línea</a>
-              <a href="#" class="btn btn-outline" lang="es">Llamar al 030 44 26 84 3</a>
-              <a href="#" class="btn btn-primary" lang="tr">Online randevu alın</a>
-              <a href="#" class="btn btn-outline" lang="tr">030 44 26 84 3'ü arayın</a>
+            <h3 class="mt-60">Sonderzeichen in allen Schnitten</h3>
+            <div class="mt-24">
+              {zeichenproben.map((z) => (
+                <div lang={z.lang} class="grid gap-12 border-t border-oxblood-ink py-20 md:grid-cols-[60px_1fr]">
+                  <p class="label">{z.lang.toUpperCase()}</p>
+                  <div class="space-y-8">
+                    <p class="font-caslon-display text-title">{z.text}</p>
+                    <p class="font-caslon-ionic text-subheading">{z.text}</p>
+                    <p>{z.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-          <!-- Muster <Terminbuchung /> Modus „link“ -->
-          <div class="border border-ink p-6 md:p-8">
-            <p class="label">Termin</p>
-            <h3 class="mt-3">Termin vereinbaren</h3>
-            <p class="mt-3 text-body">Termine können Sie rund um die Uhr online über Doctolib buchen – oder telefonisch während der Sprechzeiten.</p>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Online-Termin buchen <span class="sr-only">(öffnet in neuem Fenster)</span></a>
-              <a href="tel:+49304426843" class="btn btn-outline">030 44 26 84 3 anrufen</a>
-            </div>
-            <p class="meta mt-3">über Doctolib · öffnet in neuem Fenster</p>
           </div>
         </div>
       </section>
 
-      <!-- ===================== Raster & Formular ===================== -->
-      <section class="container-page section border-t border-ink">
-        <h2>Schwerpunkt-Raster</h2>
-        <ul class="mt-10 grid border-t border-l border-ink sm:grid-cols-2 lg:grid-cols-4">
-          {["Zahnersatz", "Implantologie", "Ästhetik", "CMD & Schienen"].map((t) => (
-            <li class="border-b border-r border-ink">
-              <a href="#" class="group block no-underline">
-                <div class="foto-folgt aspect-[4/3] border-0 border-b"><span class="label">Stockfoto (Phase 3)</span></div>
-                <div class="p-5">
-                  <p class="kategorie group-hover:underline">{t}</p>
-                  <p class="meta mt-2">Kronen, Brücken, Prothesen</p>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <h2 class="mt-24">Formular</h2>
-        <form class="mt-8 grid max-w-text gap-6" action="#" method="get">
-          <label class="grid gap-2"><span class="text-ui font-medium">Name</span><input class="field" type="text" autocomplete="name" /></label>
-          <label class="grid gap-2"><span class="text-ui font-medium">Anliegen</span>
-            <select class="field"><option>Erstberatung</option><option>Zweitmeinung</option><option>Implantat</option></select>
-          </label>
-          <label class="grid gap-2"><span class="text-ui font-medium">Nachricht <span class="text-ink-muted">(optional)</span></span><textarea class="field" rows="4" placeholder="Bitte keine Befunde – die bringen Sie gern mit."></textarea></label>
-          <div><button class="btn btn-primary" type="button">Anfrage senden</button></div>
-        </form>
+      <!-- ===================== Formular ===================== -->
+      <section class="container-page section">
+        <div class="sektion-kopf">
+          <p class="label">Formular</p>
+          <form class="grid max-w-text gap-24" action="#" method="get">
+            <label class="grid gap-8"><span class="text-nav">Name</span><input class="field" type="text" autocomplete="name" /></label>
+            <label class="grid gap-8"><span class="text-nav">Anliegen</span>
+              <select class="field"><option>Erstberatung</option><option>Zweitmeinung</option><option>Implantat</option></select>
+            </label>
+            <label class="grid gap-8"><span class="text-nav">Nachricht <span class="text-oxblood-muted">(optional)</span></span><textarea class="field" rows="4" placeholder="Bitte keine Befunde – die bringen Sie gern mit."></textarea></label>
+            <div><button class="btn btn-primary" type="button">Anfrage senden</button></div>
+          </form>
+        </div>
       </section>
     </main>
 
-    <footer class="border-t border-ink">
-      <div class="container-page grid gap-6 py-12 md:grid-cols-3">
-        <p class="font-serif text-h3">Zahnarztpraxis Dr. Adali</p>
-        <p>Schönhauser Allee 10–11<br />10119 Berlin</p>
+    <!-- ===================== Footer (A10) ===================== -->
+    <footer class="border-t border-oxblood-ink">
+      <div class="container-page grid gap-32 py-60 md:grid-cols-3">
+        <div>
+          <p class="font-caslon-ionic text-subheading">Zahnarztpraxis Dr. Adali</p>
+          <p class="mt-8 text-nav">Schönhauser Allee 10–11<br />10119 Berlin</p>
+        </div>
+        <ul class="text-nav">
+          <li><a class="nav-link justify-start" href={tel}>030 44 26 84 3</a></li>
+          <li><a class="nav-link justify-start" href="mailto:kontakt@zahnarzt-adali.de">kontakt@zahnarzt-adali.de</a></li>
+        </ul>
         <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Fußzeile)" />
       </div>
     </footer>
@@ -251,8 +286,8 @@ const zeichenproben = [
     <MobileLeiste
       label="Schnellzugriff"
       eintraege={[
-        { href: "#", label: "Online-Termin", extern: true, externHinweis: "öffnet in neuem Fenster" },
-        { href: "tel:+49304426843", label: "Anrufen" },
+        { href: doctolib, label: "Online-Termin", extern: true, externHinweis: "über Doctolib, öffnet in neuem Fenster" },
+        { href: tel, label: "Anrufen" },
         { href: "#", label: "Anfahrt" },
       ]}
     />

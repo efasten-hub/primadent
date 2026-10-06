@@ -1,7 +1,7 @@
 ---
 /**
  * Schlanke, fixierte Leiste unten – nur auf dem Handy.
- * Cream Paper, 1px-Oxblood-Haarlinie oben, kleine Labels:
+ * Cream Paper, 1px-Oxblood-Haarlinie oben, kleine Labels (14px, DESIGN.md A6):
  * Online-Termin · Anrufen · Anfahrt. Kein WhatsApp (Gesundheitsdaten, DSGVO).
  */
 interface Eintrag { href: string; label: string; extern?: boolean; externHinweis?: string }
@@ -12,16 +12,16 @@ const spalten = ["grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4"][ein
 ---
 <nav
   aria-label={label}
-  class="fixed inset-x-0 bottom-0 z-40 border-t border-ink bg-paper pb-[env(safe-area-inset-bottom)] md:hidden"
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-oxblood-ink bg-cream-paper pb-[env(safe-area-inset-bottom)] md:hidden"
 >
   <ul class:list={["grid", spalten]}>
     {eintraege.map((e, i) => (
-      <li class:list={[i > 0 && "border-l border-ink"]}>
+      <li class:list={[i > 0 && "border-l border-oxblood-ink"]}>
         <a
           href={e.href}
           target={e.extern ? "_blank" : undefined}
           rel={e.extern ? "noopener" : undefined}
-          class="label flex min-h-14 tracking-[0.03em] items-center justify-center px-2 text-center no-underline"
+          class="label flex min-h-56 items-center justify-center px-8 text-center no-underline"
         >
           {e.label}
           {e.extern && e.externHinweis && <span class="sr-only"> ({e.externHinweis})</span>}
