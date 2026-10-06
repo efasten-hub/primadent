@@ -95,45 +95,44 @@ Dr. Kleinert: Dr. Thorsten Kleinert hat eine eigene Praxis an derselben Adresse 
 
 ## 8. Offene Fragen an die Praxis
 
-1. ~~Praxisname~~ → erledigt: „Primadent“ (siehe Abschnitte 9 und 10)
+1. ~~Praxisname~~ → erledigt: **„Dentaviva“** (06.10.2026, ersetzt „Primadent“; siehe Abschnitte 9 und 10)
 2. **Sprechzeiten von Dr. Adali**: offen (siehe Abschnitt 11)
-3. ~~Sprachen~~ → Türkisch und Spanisch: ja. Offen: wer spricht welche Sprache?
+3. ~~Sprachen~~ → **Dr. Adali spricht Deutsch, Englisch, Spanisch und Türkisch.**
 4. ~~Seit wann~~ → 2025
 5. **Klinische Fotos:** Einwilligungen unbekannt → bleiben ausgeschlossen
 6. ~~Galeriefotos~~ → Stock, entfernt
 7. ~~Parken~~ → „kostenlose Parkplätze in der Tiefgarage“
-8. **Logo-Umfärbung** in Oxblood: freigegeben?
+8. ~~Logo~~ → altes Logo entfällt, **Platzhalter-Monogramm „D“** bis zum finalen Logo
 
 ## 9. Antworten der Praxis (06.10.2026)
 
 | Frage | Antwort | Folge für die Website |
 |---|---|---|
-| Praxisname | **„Primadent“** | Neuer Name überall identisch (Website, Google, Doctolib, Verzeichnisse). Doctolib heißt noch „Praxisgemeinschaft Dr. Adali / Dr. Kleinert“ und muss angepasst werden. ⚠️ Namenskonflikte siehe Abschnitt 10. |
+| Praxisname | ~~„Primadent“~~ → **„Dentaviva“** (Nachtrag 06.10.2026) | Neuer Name überall identisch (Website, Google, Doctolib, Verzeichnisse). Doctolib heißt noch „Praxisgemeinschaft Dr. Adali / Dr. Kleinert“ und muss angepasst werden. ⚠️ Namenskonflikte siehe Abschnitt 10. |
 | Sprechzeiten Dr. Adali | offen | siehe Abschnitt 11 |
-| Türkisch/Spanisch im Team | **ja** | ES- und TR-Versionen ohne Hinweis „nur Deutsch/Englisch“. Offen ist, **wer** welche Sprache spricht (für Team-Seite und `knowsLanguage`). Doctolib nennt bisher nur Deutsch und Englisch, das muss ergänzt werden. |
+| Türkisch/Spanisch im Team | **ja: Dr. Adali spricht DE, EN, ES, TR** (Nachtrag) | ES- und TR-Versionen ohne Hinweis „nur Deutsch/Englisch“. Offen ist, **wer** welche Sprache spricht (für Team-Seite und `knowsLanguage`). Doctolib nennt bisher nur Deutsch und Englisch, das muss ergänzt werden. |
 | Eigene Praxis seit | **2025** | `praxis_seit: 2025`. Die Aussagen „seit 2011“ der alten Seite entfallen. |
 | Einwilligungen klinische Fotos | unbekannt | bleiben ausgeschlossen |
 | Galeriefotos | **Stock** | entfernt (siehe Abschnitt 6) |
 | Parken | **„kostenlose Parkplätze in der Tiefgarage“** | so in `site.ts`, bei Doctolib angleichen |
 
-## 10. Namenskonflikt „Primadent“ ⚠️
+## 10. Name „Dentaviva“: ähnliche Namen ⚠️
 
-Der Name wird bereits verwendet (Websuche, 06.10.2026):
+Der zunächst gewählte Name „Primadent“ wurde verworfen. Das Berliner Dentallabor „Labor Primadent Zahntechnik“ sowie Praxen in Bremen und Backnang tragen ihn bereits.
 
-| Wer | Ort | Branche |
+Für **„Dentaviva“** gibt es keinen exakten Treffer (Websuche, 06.10.2026), aber **klanglich sehr ähnliche Namen in derselben Branche**:
+
+| Wer | Ort | Ähnlichkeit |
 |---|---|---|
-| **Labor Primadent Zahntechnik / Primadent Zahntechnikermeisterteam** (Haming + Schulz OHG bzw. Schulz e. K.), Saarstr. 5 | **Berlin**-Friedenau | **Dentallabor** |
-| Zahnarztpraxis Primadent (zahnarztpraxis-primadent.de) | Bremen | Zahnarztpraxis |
-| Zahnarztpraxis PrimaDent, Ornella Smiguel | Backnang | Zahnarztpraxis (auch auf Doctolib) |
-| zahntechnik-primadent.de | Herford | Dentallabor |
-| primadent.de | – | Domain steht zum Verkauf |
+| **Denta Vita / Dr. Dentavita** (dr-dentavita.de), Oranienburger Straße 37 | **Berlin-Mitte**, ca. 1,5 km entfernt | ⚠️ ein Buchstabe Unterschied, gleicher Bezirk |
+| Dentavita MVZ für Implantologie & Zahnästhetik GmbH | Mannheim | ein Buchstabe |
+| Dentavida | Augsburg | ein Buchstabe |
 
 Risiken:
-- **Kennzeichenrecht:** Ein Berliner Dentallabor mit gleichem Namen in derselben Branche und Stadt kann ältere Rechte am Unternehmenskennzeichen haben (§ 5 MarkenG). Dazu Markenrecherche bei DPMA/EUIPO. [[PRÜFEN juristisch vor Livegang]]
-- **Verwechslung:** Die neue Seite wirbt mit „eigenem Dentallabor“. Patienten könnten das Friedenauer Labor für das Praxislabor halten. Falls die Praxis tatsächlich mit diesem Labor verbunden ist: klären und dann korrekt benennen. [[PRÜFEN]]
-- **SEO/GEO:** Suchen nach „Primadent Berlin“ liefern heute das Labor. Der Name sollte deshalb immer zusammen mit „Zahnarztpraxis“ und „Dr. Adali“ auftreten, z. B. „Primadent – Zahnarztpraxis Dr. Adali“.
-- **Domain:** zahnarzt-adali.de bleibt. primadent.de wird verkauft (optional).
-- **Logo:** Das bestehende Logo zeigt ein „A“ (Adali). Ob es zu „Primadent“ passt, entscheidet die Praxis.
+- **Kennzeichenrecht:** „Dentaviva“ und „Denta Vita“ unterscheiden sich in einem Buchstaben, in derselben Branche und im selben Bezirk. Das spricht für **Verwechslungsgefahr** (§§ 5, 15 MarkenG), und der ältere Name hat Vorrang. Vor Livegang ist eine juristische Prüfung inklusive Recherche bei DPMA/EUIPO dringend empfohlen. [[PRÜFEN juristisch vor Livegang]]
+- **Auffindbarkeit:** Suchmaschinen korrigieren „Dentaviva“ teils zu „Dentavita“. Der Zusatz „Zahnarztpraxis Dr. Adali“ ist daher in Titel, Schema.org, Google-Profil und Doctolib wichtig.
+- **Domain:** zahnarzt-adali.de bleibt. Ob dentaviva.de bzw. dentaviva-berlin.de frei sind, ist noch zu prüfen. [[PRÜFEN]]
+- **Logo:** Das alte „A“-Logo entfällt. Bis zum finalen Logo gilt ein Platzhalter-Monogramm „D“.
 
 ## 11. Sprechzeiten: was die Quellen zeigen
 

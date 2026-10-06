@@ -446,8 +446,9 @@ Der Export kennt nur Textlinks („there are no filled buttons“). Für die Pra
 
 ### A8 Header, Navigation, Logo
 
-- **Abweichung vom Export** (dort: Navigation ohne Logo, Wortmarke im Inhalt). Der Header zeigt links die **Serif-Wortmarke „Primadent“** (24px, Libre Caslon Text), darunter bzw. daneben in Caption-Größe „Zahnarztpraxis Dr. Adali“. Der Zusatz grenzt den Namen von gleichnamigen Betrieben ab (siehe `docs/bestandsaufnahme.md`, Abschnitt 10).
-- **Logo:** Das bestehende Praxislogo (Zahn mit „A“ im Kreis) ist magentafarben (`#bf316c`) und damit eine Fremdfarbe. Für diese Website gibt es eine **farblich angepasste Fassung in Oxblood/Cream** mit identischer Form (`src/assets/logo/logo-oxblood.png`). Sie wird nur als Favicon und App-Icon verwendet. Das Original liegt unverändert unter `src/assets/logo/logo-original-magenta.png`. **[[PRÜFEN: Freigabe der Logo-Umfärbung durch die Praxis]]**
+- **Abweichung vom Export** (dort: Navigation ohne Logo, Wortmarke im Inhalt). Der Header zeigt links das Logo-Monogramm und die **Serif-Wortmarke „Dentaviva“** (24px, Libre Caslon Text), darunter in Caption-Größe „Zahnarztpraxis Dr. Adali“. Der Zusatz grenzt den Namen von ähnlich klingenden Praxen ab, z. B. „Denta Vita“ in Berlin-Mitte (siehe `docs/bestandsaufnahme.md`, Abschnitt 10).
+- **Logo: [[PLATZHALTER]].** Bis zum finalen Logo steht ein Monogramm „D“ aus Libre Caslon Display, als Vektorpfad in Oxblood mit 1px-Haarlinienrahmen (`src/assets/logo/logo-platzhalter.svg`). Favicon und App-Icon zeigen dasselbe „D“ in Cream auf Oxblood (`public/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`). Das finale Logo muss ebenfalls in Oxblood/Cream funktionieren, einfarbig und ohne Verlauf.
+- Das alte Logo (Zahn mit „A“, Magenta) entfällt mit dem neuen Namen. Archiv: `docs/alte-website/logo-alt-magenta.png`.
 - **Zweizeiliger Header ab 1024px:**
   - Zeile 1: Wortmarke | Sprachumschalter · Telefon · „Online-Termin“
   - Zeile 2: Navigation (16px, 24px Abstand)
