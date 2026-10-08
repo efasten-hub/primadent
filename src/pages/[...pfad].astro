@@ -1,0 +1,36 @@
+---
+/**
+ * Eine Route für alle Seiten in allen Sprachen.
+ * Welche URLs entstehen, bestimmen src/i18n/routen.ts (Slugs) und src/content/<sprache>/<id>.md
+ * (Inhalt mit „uebersetzt: true“). Die Vorlage richtet sich nach dem Seitentyp.
+ */
+import type { GetStaticPaths } from "astro";
+import { getEntry, render } from "astro:content";
+import type { Sprache } from "../config/site";
+import { seitenVerfuegbar } from "../i18n";
+import { pfad, routen } from "../i18n/routen";
+import Startseite from "../vorlagen/Startseite.astro";
+import Kontakt from "../vorlagen/Kontakt.astro";
+import Standard from "../vorlagen/Standard.astro";
+
+export const getStaticPaths = (async () => {
+  const verfuegbar = await seitenVerfuegbar();
+  const pfade = [];
+  for (const [id, sprachen] of verfuegbar) {
+    for (const sprache of sprachen) {
+      const p = pfad(id, sprache)!.replace(/^\/|\/$/g, "");
+      pfade.push({ params: { pfad: p || undefined }, props: { id, sprache } });
+    }
+  }
+  return pfade;
+}) satisfies GetStaticPaths;
+
+const { id, sprache } = Astro.props as { id: string; sprache: Sprache };
+const eintrag = (await getEntry("seiten", `${sprache}/${id}`))!;
+const { Content } = await render(eintrag);
+const typ = routen[id].typ;
+const Vorlage = typ === "startseite" ? Startseite : typ === "kontakt" ? Kontakt : Standard;
+---
+<Vorlage id={id} sprache={sprache} daten={eintrag.data}>
+  <Content />
+</Vorlage>

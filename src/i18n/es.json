@@ -1,0 +1,152 @@
+{
+  "_hinweise": "Textos de la interfaz en español (forma «usted»). Pendiente de revisión por una persona nativa [[PRÜFEN]].",
+  "meta": {
+    "sprache_name": "Español",
+    "sprache_im_satz": "español"
+  },
+  "a11y": {
+    "zum_inhalt": "Saltar al contenido",
+    "hauptnavigation": "Navegación principal",
+    "navigation_mobil": "Navegación principal (móvil)",
+    "sprache_waehlen": "Elegir idioma",
+    "neues_fenster": "se abre en una ventana nueva",
+    "schnellzugriff": "Acceso rápido",
+    "menue": "Menú",
+    "breadcrumb": "Usted está aquí",
+    "startseite_link": "Dentaviva – página de inicio",
+    "fusszeile": "Pie de página"
+  },
+  "nav": {
+    "startseite": "Inicio",
+    "leistungen": "Tratamientos",
+    "ueber-dr-adali": "Sobre el Dr. Adali",
+    "praxis-team": "Clínica y equipo",
+    "ratgeber": "Guía",
+    "faq": "Preguntas frecuentes",
+    "kontakt": "Cita y contacto",
+    "fuer-zahnaerzte": "Para dentistas",
+    "impressum": "Aviso legal",
+    "datenschutz": "Privacidad",
+    "barrierefreiheit": "Accesibilidad"
+  },
+  "termin": {
+    "titel": "Pedir cita",
+    "online_buchen": "Reservar cita en línea",
+    "online_kurz": "Cita en línea",
+    "ueber_anbieter": "a través de {anbieter}",
+    "anrufen": "Llamar al {telefon}",
+    "anrufen_kurz": "Llamar",
+    "hinweis": "Puede reservar su cita en línea a través de Doctolib a cualquier hora, o por teléfono en nuestro horario de consulta.",
+    "telefon_empfehlung": "Para una primera consulta sobre implantes, una segunda opinión o el tratamiento de niños con diagnósticos especiales, lo mejor es que nos llame directamente.",
+    "oberflaeche_sprache": "La página de reservas de Doctolib está en alemán o inglés.",
+    "taeglich": "Puede pedir cita todos los días por teléfono o en línea.",
+    "fallback": "Por favor, pida su cita por teléfono o a través de nuestro formulario de solicitud.",
+    "anfrage_link": "Ir al formulario de solicitud",
+    "widget_laden": "Cargar calendario en línea",
+    "widget_datenschutz": "El calendario de Doctolib solo se carga cuando usted hace clic en «Cargar calendario en línea». En ese momento se transmiten datos a Doctolib GmbH. Más información en nuestra {link}.",
+    "datenschutzerklaerung": "política de privacidad"
+  },
+  "anfahrt": {
+    "titel": "Cómo llegar",
+    "aufgang": "Entrada A, a la izquierda, 2.ª planta",
+    "aufzug": "con ascensor",
+    "parken": "Aparcamiento gratuito en el garaje subterráneo",
+    "oepnv": "En transporte público",
+    "fussweg": "aprox. {min} min a pie",
+    "karte_laden": "Cargar mapa",
+    "karte_hinweis": "El mapa de OpenStreetMap solo se carga después de su clic. En ese momento se transmite su dirección IP al servicio de mapas.",
+    "route": "Planificar la ruta"
+  },
+  "sprechzeiten": {
+    "titel": "Horario de consulta",
+    "uhr": "{von}–{bis} h",
+    "nach_vereinbarung": "y con cita previa",
+    "tage": {
+      "Monday": "Lunes",
+      "Tuesday": "Martes",
+      "Wednesday": "Miércoles",
+      "Thursday": "Jueves",
+      "Friday": "Viernes",
+      "Saturday": "Sábado",
+      "Sunday": "Domingo"
+    }
+  },
+  "sprachen": {
+    "namen": { "de": "alemán", "en": "inglés", "es": "español", "tr": "turco" },
+    "und": "y",
+    "behandlung_in": "Tratamiento y asesoramiento en {sprachen}.",
+    "dr_adali_spricht": "El Dr. Adali le atiende y le trata en {sprachen}.",
+    "team_spricht": "Nuestro equipo le atiende en {sprachen}.",
+    "auch_verfuegbar": "Esta página también está disponible en español.",
+    "auch_verfuegbar_link": "Ir a la versión en español",
+    "schliessen": "Cerrar aviso",
+    "nicht_uebersetzt": "Esta página todavía no está disponible en español. Está viendo la versión en alemán.",
+    "nur_deutsch": "solo en alemán"
+  },
+  "versicherung": {
+    "alle": "Atendemos a pacientes con seguro médico público (GKV) o privado (PKV), así como a pacientes que pagan directamente."
+  },
+  "seite": {
+    "medizinisch_geprueft": "Revisado médicamente por {name} · Actualizado: {datum}",
+    "mehr_erfahren": "Más información",
+    "nicht_gefunden_titel": "Esta página no existe.",
+    "nicht_gefunden_text": "Es posible que la dirección haya cambiado. Puede continuar aquí:",
+    "rechtsverbindlich": "La versión alemana es la jurídicamente vinculante."
+  },
+  "footer": {
+    "kontakt": "Contacto",
+    "schwerpunkte": "Especialidades",
+    "rechtliches": "Información legal",
+    "sprechzeiten": "Horario de consulta",
+    "copyright": "© {jahr} {name}"
+  },
+  "geo": {
+    "_hinweis": "[[PRÜFEN]] Frase clave, idéntica en llms.txt, «Sobre el Dr. Adali» y pie de página.",
+    "kernsatz": "Dentaviva – la clínica dental del Dr. Adali en la Schönhauser Allee 10–11 de Berlín, entre los barrios de Mitte y Prenzlauer Berg, está dirigida por el Dr. Ufuk Adali, antiguo médico adjunto jefe (leitender Oberarzt) del hospital universitario Charité, especialista en prótesis dental certificado por la DGPro e implantólogo certificado (DGI). Sus especialidades son las prótesis dentales, los implantes, los puentes adhesivos, la estética dental, el tratamiento de la disfunción de la ATM y la atención a niños con agenesia dental, MIH y enfermedades dentales sindrómicas, con laboratorio dental propio. Las citas se pueden reservar por teléfono o en línea a través de Doctolib; la consulta se ofrece en {sprachen}."
+  },
+  "team": {
+    "rollen": {
+      "zahnarzt_inhaber": "Dentista, titular de la clínica",
+      "zahntechnikermeister": "Maestro protésico dental",
+      "zfa": "Auxiliar de odontología",
+      "zmp": "Higienista dental"
+    },
+    "foto_folgt": "Foto próximamente",
+    "spricht": "Habla {sprachen}"
+  },
+  "formular": {
+    "titel": "Enviar una solicitud",
+    "einleitung": "Para consultas que no pueda reservar en línea, por ejemplo una segunda opinión o una primera consulta. Normalmente le respondemos en un plazo de dos días laborables.",
+    "name": "Nombre",
+    "kontakt": "Teléfono o correo electrónico",
+    "kontakt_hilfe": "Para poder ponernos en contacto con usted; basta con uno de los dos.",
+    "wunschtermin": "Fecha preferida",
+    "wunschtermin_hilfe": "Por ejemplo «por las mañanas» o «a partir del 15 de noviembre»",
+    "sprache": "Idioma preferido",
+    "anliegen": "Motivo de la consulta",
+    "anliegen_optionen": {
+      "erstberatung": "Primera consulta",
+      "zweitmeinung": "Segunda opinión",
+      "implantat": "Implante",
+      "zahnersatz": "Prótesis dental",
+      "aesthetik": "Estética dental",
+      "kinder": "Niños",
+      "sonstiges": "Otro"
+    },
+    "nachricht": "Mensaje breve",
+    "optional": "opcional",
+    "pflicht": "obligatorio",
+    "hinweis_befunde": "Por favor, no envíe informes médicos, radiografías ni otros datos de salud a través de este formulario. Puede traer sus documentos a la cita.",
+    "datenschutz_hinweis": "Utilizamos sus datos únicamente para responder a su solicitud. Más información en nuestra {link}.",
+    "senden": "Enviar solicitud",
+    "fehler": {
+      "titel": "Por favor, revise sus datos:",
+      "name": "Por favor, indique su nombre.",
+      "kontakt": "Por favor, indique un número de teléfono o un correo electrónico.",
+      "email": "Por favor, revise la dirección de correo electrónico.",
+      "versand": "Lamentablemente, no se ha podido enviar su solicitud. Por favor, llámenos al {telefon}."
+    },
+    "danke_titel": "Muchas gracias por su solicitud.",
+    "danke_text": "Hemos recibido su mensaje y normalmente le respondemos en un plazo de dos días laborables. Si es urgente, por favor, llámenos."
+  }
+}

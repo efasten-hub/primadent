@@ -1,0 +1,20 @@
+---
+/**
+ * Behandlungssprachen – aus site.ts → gesprochene_sprachen.
+ * Wird die Website-Sprache weder von Dr. Adali noch vom Team gesprochen, erscheint ein freundlicher
+ * Hinweis, in welchen Sprachen betreut wird (z. B. ES: „Nuestro equipo le atiende en alemán e inglés.“).
+ */
+import { site, type Sprache } from "../config/site";
+import { t, sprachListe } from "../i18n";
+
+interface Props { sprache: Sprache; class?: string }
+const { sprache, class: klasse = "" } = Astro.props;
+const { dr_adali, team } = site.gesprochene_sprachen;
+const alle = [...new Set([...dr_adali, ...team])] as Sprache[];
+const vertreten = alle.includes(sprache);
+---
+<p class:list={["border-l border-oxblood-ink pl-16", klasse]}>
+  {vertreten
+    ? t(sprache, "sprachen.dr_adali_spricht", { sprachen: sprachListe(sprache, dr_adali) })
+    : t(sprache, "sprachen.team_spricht", { sprachen: sprachListe(sprache, alle) })}
+</p>

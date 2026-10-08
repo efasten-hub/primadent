@@ -267,6 +267,28 @@
   .menue[open] .menue-zeichen { transform: rotate(45deg); }
   .menue-zeichen { display: inline-block; font-size: var(--text-subheading); line-height: 1; transition: transform 150ms ease; }
 
+  /* Fließtext aus Markdown (Seiteninhalte) – Abstände aus der Export-Skala */
+  .inhalt { max-width: var(--container-text); }
+  .inhalt > * + * { margin-top: var(--spacing-16); }
+  .inhalt h2 { margin-top: var(--spacing-60); }
+  .inhalt h3 { margin-top: var(--spacing-40); }
+  .inhalt h2 + *, .inhalt h3 + * { margin-top: var(--spacing-16); }
+  .inhalt ul { list-style: none; padding: 0; }
+  .inhalt ul > li { position: relative; padding-left: var(--spacing-24); }
+  .inhalt ul > li::before { content: "–"; position: absolute; left: 0; }
+  .inhalt ol { list-style: decimal; padding-left: var(--spacing-24); }
+  .inhalt li + li { margin-top: var(--spacing-8); }
+  .inhalt a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+  .inhalt a:hover { text-decoration-thickness: 1.5px; }
+  .inhalt hr { border: 0; border-top: 1px solid var(--color-oxblood-ink); margin-block: var(--spacing-40); }
+  .inhalt table { width: 100%; border-collapse: collapse; font-size: var(--text-nav); }
+  .inhalt th, .inhalt td { text-align: left; padding: var(--spacing-8) var(--spacing-12) var(--spacing-8) 0; border-bottom: 1px solid var(--color-oxblood-ink); vertical-align: top; }
+
+  /* Hinweis „Seite noch nicht übersetzt“: nur sichtbar, wenn die URL auf ihn zeigt (#uebersetzung-fehlt-xx) */
+  .hinweis-ziel:not(:target) { display: none; }
+  .hinweis-ziel { scroll-margin-top: 160px; } /* Header beim Sprung sichtbar lassen */
+  main:focus { outline: none; }
+
   /* Bildfläche „FOTO FOLGT“ – nur wo weder echtes Foto noch Stock zulässig ist */
   .foto-folgt {
     display: grid;

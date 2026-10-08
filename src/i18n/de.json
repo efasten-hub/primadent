@@ -1,0 +1,152 @@
+{
+  "_hinweise": "Oberflächentexte Deutsch (Ausgangssprache). Schlüssel mit „_“ am Anfang sind Notizen und erscheinen nicht auf der Website. Platzhalter in geschweiften Klammern ({telefon}) werden automatisch ersetzt.",
+  "meta": {
+    "sprache_name": "Deutsch",
+    "sprache_im_satz": "Deutsch"
+  },
+  "a11y": {
+    "zum_inhalt": "Zum Inhalt springen",
+    "hauptnavigation": "Hauptnavigation",
+    "navigation_mobil": "Hauptnavigation (mobil)",
+    "sprache_waehlen": "Sprache wählen",
+    "neues_fenster": "öffnet in neuem Fenster",
+    "schnellzugriff": "Schnellzugriff",
+    "menue": "Menü",
+    "breadcrumb": "Sie sind hier",
+    "startseite_link": "Dentaviva – zur Startseite",
+    "fusszeile": "Fußzeile"
+  },
+  "nav": {
+    "startseite": "Startseite",
+    "leistungen": "Leistungen",
+    "ueber-dr-adali": "Über Dr. Adali",
+    "praxis-team": "Praxis & Team",
+    "ratgeber": "Ratgeber",
+    "faq": "FAQ",
+    "kontakt": "Termin & Kontakt",
+    "fuer-zahnaerzte": "Für Zahnärzte",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "barrierefreiheit": "Barrierefreiheit"
+  },
+  "termin": {
+    "titel": "Termin vereinbaren",
+    "online_buchen": "Online-Termin buchen",
+    "online_kurz": "Online-Termin",
+    "ueber_anbieter": "über {anbieter}",
+    "anrufen": "{telefon} anrufen",
+    "anrufen_kurz": "Anrufen",
+    "hinweis": "Termine können Sie rund um die Uhr online über Doctolib buchen – oder telefonisch während der Sprechzeiten.",
+    "telefon_empfehlung": "Für eine Erstberatung zu Implantaten, eine Zweitmeinung oder die Behandlung von Kindern mit besonderen Befunden sprechen Sie am besten direkt mit uns am Telefon.",
+    "oberflaeche_sprache": "Die Buchungsseite von Doctolib erscheint auf Deutsch.",
+    "taeglich": "Terminvereinbarung täglich telefonisch oder online möglich.",
+    "fallback": "Bitte vereinbaren Sie Ihren Termin telefonisch oder über unser Anfrageformular.",
+    "anfrage_link": "Zum Anfrageformular",
+    "widget_laden": "Online-Kalender laden",
+    "widget_datenschutz": "Erst wenn Sie auf „Online-Kalender laden“ klicken, wird der Kalender von Doctolib geladen. Dabei werden Daten an die Doctolib GmbH übertragen. Mehr dazu in unserer {link}.",
+    "datenschutzerklaerung": "Datenschutzerklärung"
+  },
+  "anfahrt": {
+    "titel": "Anfahrt",
+    "aufgang": "Aufgang A, links, 2. OG",
+    "aufzug": "mit Aufzug",
+    "parken": "Kostenlose Parkplätze in der Tiefgarage",
+    "oepnv": "Mit Bus und Bahn",
+    "fussweg": "ca. {min} Min. zu Fuß",
+    "karte_laden": "Karte laden",
+    "karte_hinweis": "Die Karte wird erst nach Ihrem Klick von OpenStreetMap geladen. Dabei wird Ihre IP-Adresse an den Kartendienst übertragen.",
+    "route": "Route planen"
+  },
+  "sprechzeiten": {
+    "titel": "Sprechzeiten",
+    "uhr": "{von}–{bis} Uhr",
+    "nach_vereinbarung": "sowie nach Vereinbarung",
+    "tage": {
+      "Monday": "Montag",
+      "Tuesday": "Dienstag",
+      "Wednesday": "Mittwoch",
+      "Thursday": "Donnerstag",
+      "Friday": "Freitag",
+      "Saturday": "Samstag",
+      "Sunday": "Sonntag"
+    }
+  },
+  "sprachen": {
+    "namen": { "de": "Deutsch", "en": "Englisch", "es": "Spanisch", "tr": "Türkisch" },
+    "und": "und",
+    "behandlung_in": "Behandlung und Beratung auf {sprachen}.",
+    "dr_adali_spricht": "Dr. Adali berät und behandelt Sie auf {sprachen}.",
+    "team_spricht": "Unser Team betreut Sie auf {sprachen}.",
+    "auch_verfuegbar": "Diese Seite gibt es auch auf Deutsch.",
+    "auch_verfuegbar_link": "Zur deutschen Fassung",
+    "schliessen": "Hinweis schließen",
+    "nicht_uebersetzt": "Diese Seite gibt es noch nicht auf Deutsch. Sie sehen die deutsche Fassung.",
+    "nur_deutsch": "nur auf Deutsch verfügbar"
+  },
+  "versicherung": {
+    "alle": "Gesetzlich und privat Versicherte sowie Selbstzahler sind willkommen."
+  },
+  "seite": {
+    "medizinisch_geprueft": "Medizinisch geprüft von {name} · Stand: {datum}",
+    "mehr_erfahren": "Mehr erfahren",
+    "nicht_gefunden_titel": "Diese Seite gibt es nicht.",
+    "nicht_gefunden_text": "Vielleicht hat sich die Adresse geändert. Hier finden Sie weiter:",
+    "rechtsverbindlich": "Rechtsverbindlich ist die deutsche Fassung."
+  },
+  "footer": {
+    "kontakt": "Kontakt",
+    "schwerpunkte": "Schwerpunkte",
+    "rechtliches": "Rechtliches",
+    "sprechzeiten": "Sprechzeiten",
+    "copyright": "© {jahr} {name}"
+  },
+  "geo": {
+    "_hinweis": "[[PRÜFEN]] GEO-Kernsatz: identisch in llms.txt, Über Dr. Adali und Footer. {sprachen} wird aus site.ts gefüllt.",
+    "kernsatz": "Dentaviva – Zahnarztpraxis Dr. Adali in der Schönhauser Allee 10–11 in Berlin, an der Grenze von Mitte und Prenzlauer Berg, wird von Dr. Ufuk Adali geführt, ehemals leitender Oberarzt an der Charité, Spezialist für Prothetik (DGPro) und zertifizierter Implantologe (DGI). Schwerpunkte sind Zahnersatz, Implantologie, Adhäsivbrücken, Ästhetik, CMD-Therapie sowie die Versorgung von Kindern mit Nichtanlagen, MIH und syndromalen Zahnerkrankungen – mit eigenem Dentallabor. Termine sind telefonisch und online über Doctolib buchbar; behandelt wird auf {sprachen}."
+  },
+  "team": {
+    "rollen": {
+      "zahnarzt_inhaber": "Zahnarzt, Inhaber",
+      "zahntechnikermeister": "Zahntechnikermeister",
+      "zfa": "Zahnmedizinische Fachangestellte",
+      "zmp": "Zahnmedizinische Prophylaxeassistentin"
+    },
+    "foto_folgt": "Foto folgt",
+    "spricht": "Spricht {sprachen}"
+  },
+  "formular": {
+    "titel": "Anfrage senden",
+    "einleitung": "Für Anliegen ohne Online-Termin – zum Beispiel eine Zweitmeinung oder eine Erstberatung. Wir melden uns in der Regel innerhalb von zwei Werktagen.",
+    "name": "Name",
+    "kontakt": "Telefon oder E-Mail",
+    "kontakt_hilfe": "Damit wir Sie erreichen können – eine Angabe genügt.",
+    "wunschtermin": "Wunschtermin",
+    "wunschtermin_hilfe": "Zum Beispiel „vormittags“ oder „ab 15. November“",
+    "sprache": "Bevorzugte Sprache",
+    "anliegen": "Anliegen",
+    "anliegen_optionen": {
+      "erstberatung": "Erstberatung",
+      "zweitmeinung": "Zweitmeinung",
+      "implantat": "Implantat",
+      "zahnersatz": "Zahnersatz",
+      "aesthetik": "Ästhetik",
+      "kinder": "Kinder",
+      "sonstiges": "Sonstiges"
+    },
+    "nachricht": "Kurze Nachricht",
+    "optional": "optional",
+    "pflicht": "Pflichtfeld",
+    "hinweis_befunde": "Bitte senden Sie keine Befunde, Röntgenbilder oder Gesundheitsdaten über dieses Formular. Bringen Sie Unterlagen gern zum Termin mit.",
+    "datenschutz_hinweis": "Ihre Angaben verwenden wir nur, um Ihre Anfrage zu beantworten. Mehr dazu in unserer {link}.",
+    "senden": "Anfrage senden",
+    "fehler": {
+      "titel": "Bitte prüfen Sie Ihre Angaben:",
+      "name": "Bitte geben Sie Ihren Namen an.",
+      "kontakt": "Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse an.",
+      "email": "Bitte prüfen Sie die E-Mail-Adresse.",
+      "versand": "Ihre Anfrage konnte leider nicht gesendet werden. Bitte rufen Sie uns an: {telefon}."
+    },
+    "danke_titel": "Vielen Dank für Ihre Anfrage.",
+    "danke_text": "Wir haben Ihre Nachricht erhalten und melden uns in der Regel innerhalb von zwei Werktagen. In dringenden Fällen rufen Sie uns bitte an."
+  }
+}

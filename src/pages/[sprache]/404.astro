@@ -1,0 +1,12 @@
+---
+/** /en/404.html, /es/404.html, /tr/404.html – Apache liefert sie je Sprachordner aus (.htaccess, Phase 7). */
+import type { GetStaticPaths } from "astro";
+import NichtGefunden from "../../vorlagen/NichtGefunden.astro";
+import { SPRACHEN, STANDARD } from "../../i18n";
+import type { Sprache } from "../../config/site";
+
+export const getStaticPaths = (() =>
+  SPRACHEN.filter((s) => s !== STANDARD).map((sprache) => ({ params: { sprache } }))) satisfies GetStaticPaths;
+const sprache = Astro.params.sprache as Sprache;
+---
+<NichtGefunden sprache={sprache} />

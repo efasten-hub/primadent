@@ -1,0 +1,56 @@
+---
+/**
+ * Termin & Kontakt – Phase 2: Terminbuchung ganz oben, Telefon, Sprechzeiten, Sprachen, Anfahrt.
+ * Karte (nach Klick) und Anfrageformular folgen in Phase 4.
+ */
+import Basis from "../layouts/Basis.astro";
+import Terminbuchung from "../components/Terminbuchung.astro";
+import SprachHinweis from "../components/SprachHinweis.astro";
+import Sprechzeiten from "../components/Sprechzeiten.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { site } from "../config/site";
+import { t } from "../i18n";
+import type { VorlagenProps } from "./typen";
+
+type Props = VorlagenProps;
+const { id, sprache, daten } = Astro.props;
+---
+<Basis sprache={sprache} seitenId={id} titel={daten.seo_titel} beschreibung={daten.beschreibung}>
+  <div class="container-page pt-24">
+    <Breadcrumb sprache={sprache} id={id} />
+    <h1 class="mt-40">{daten.titel}</h1>
+    {daten.unterzeile && <p class="intro mt-24 max-w-[52rem] text-oxblood-muted">{daten.unterzeile}</p>}
+
+    <Terminbuchung sprache={sprache} variante="block" class="mt-48" />
+
+    <div class="mt-80 grid gap-60 md:grid-cols-2">
+      <section aria-labelledby="sprechzeiten-titel">
+        <h2 id="sprechzeiten-titel">{t(sprache, "sprechzeiten.titel")}</h2>
+        <Sprechzeiten sprache={sprache} class="mt-16" />
+        <p class="mt-16">{t(sprache, "termin.taeglich")}</p>
+        <p class="mt-16"><a class="link-action" href={`tel:${site.telefon}`}>{site.telefon_anzeige}</a></p>
+        <SprachHinweis sprache={sprache} class="mt-24" />
+      </section>
+
+      <section id="anfahrt" aria-labelledby="anfahrt-titel">
+        <h2 id="anfahrt-titel">{t(sprache, "anfahrt.titel")}</h2>
+        <address class="mt-16 not-italic">
+          {site.praxisname_voll}<br />
+          {site.adresse.strasse}<br />{site.adresse.plz} {site.adresse.ort}
+        </address>
+        <p class="mt-12">{t(sprache, "anfahrt.aufgang")}{site.adresse.aufzug && <>, {t(sprache, "anfahrt.aufzug")}</>}</p>
+        <p class="mt-12">{t(sprache, "anfahrt.parken")}</p>
+        <h3 class="mt-32">{t(sprache, "anfahrt.oepnv")}</h3>
+        <ul class="mt-12">
+          {site.oepnv.map((o) => (
+            <li>{o.linie} {o.haltestelle} – {t(sprache, "anfahrt.fussweg", { min: o.fussweg_min })}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <div class="inhalt mt-80">
+      <slot />
+    </div>
+  </div>
+</Basis>

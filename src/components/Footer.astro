@@ -1,0 +1,81 @@
+---
+/**
+ * Footer (DESIGN.md A10): Praxisdaten identisch zu Google-Profil und Doctolib (NAP), Sprechzeiten,
+ * Behandlungssprachen, Online-Termin, Schwerpunkte, Rechtliches, Sprachumschalter und GEO-Kernsatz.
+ * Alle Daten aus site.ts, alle Texte aus src/i18n.
+ */
+import { site, type Sprache } from "../config/site";
+import { t, sprachListe, seitenVerfuegbar, seitenTitel, terminZiel, type Alternative } from "../i18n";
+import { pfad } from "../i18n/routen";
+import Sprachumschalter from "./Sprachumschalter.astro";
+import Sprechzeiten from "./Sprechzeiten.astro";
+
+interface Props { sprache: Sprache; alternativen: Alternative[] }
+const { sprache, alternativen } = Astro.props;
+
+const verfuegbar = await seitenVerfuegbar();
+const vorhanden = (id: string) => verfuegbar.get(id)?.has(sprache);
+const SCHWERPUNKTE = ["zahnersatz", "implantologie", "adhaesivbruecke", "aesthetik", "cmd-schienen", "mih-syndrome"];
+const schwerpunkte = await Promise.all(
+  SCHWERPUNKTE.filter(vorhanden).map(async (id) => ({ href: pfad(id, sprache)!, label: await seitenTitel(id, sprache) })),
+);
+const RECHT = ["impressum", "datenschutz", "barrierefreiheit"];
+const recht = RECHT.filter(vorhanden).map((id) => ({ href: pfad(id, sprache)!, label: t(sprache, `nav.${id}`) }));
+const kernsatz = t(sprache, "geo.kernsatz", { sprachen: sprachListe(sprache, site.gesprochene_sprachen.dr_adali) });
+const jahr = new Date().getFullYear();
+const ziel = await terminZiel(sprache);
+---
+<footer class="mt-80 border-t border-oxblood-ink" aria-label={t(sprache, "a11y.fusszeile")}>
+  <div class="container-page grid gap-40 py-60 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <p class="font-caslon-ionic text-subheading">{site.praxisname}</p>
+      <p class="caption">{site.praxiszusatz}</p>
+      <address class="mt-16 text-nav not-italic">
+        {site.adresse.strasse}<br />
+        {site.adresse.plz} {site.adresse.ort}<br />
+        {t(sprache, "anfahrt.aufgang")}{site.adresse.aufzug && <>, {t(sprache, "anfahrt.aufzug")}</>}
+      </address>
+      <ul class="mt-12 text-nav">
+        <li><a class="nav-link justify-start" href={`tel:${site.telefon}`}>{site.telefon_anzeige}</a></li>
+        <li><a class="nav-link justify-start" href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="label">{t(sprache, "footer.sprechzeiten")}</p>
+      <Sprechzeiten sprache={sprache} class="mt-12 text-nav" />
+      <p class="mt-16 text-nav">{t(sprache, "sprachen.dr_adali_spricht", { sprachen: sprachListe(sprache, site.gesprochene_sprachen.dr_adali) })}</p>
+      {ziel.online && (
+        <a class="link-action mt-8" href={ziel.href} target={ziel.extern ? "_blank" : undefined} rel={ziel.extern ? "noopener" : undefined} data-ereignis="online-termin" data-sprache={sprache}>
+          {t(sprache, "termin.online_buchen")}<span class="sr-only"> ({t(sprache, "termin.ueber_anbieter", { anbieter: site.terminbuchung.anbieter_name })}{ziel.extern && `, ${t(sprache, "a11y.neues_fenster")}`})</span>
+        </a>
+      )}
+    </div>
+
+    {schwerpunkte.length > 0 && (
+      <nav aria-label={t(sprache, "footer.schwerpunkte")}>
+        <p class="label">{t(sprache, "footer.schwerpunkte")}</p>
+        <ul class="mt-12 text-nav">
+          {schwerpunkte.map((s) => <li><a class="nav-link justify-start" href={s.href}>{s.label}</a></li>)}
+        </ul>
+      </nav>
+    )}
+
+    <div>
+      {recht.length > 0 && (
+        <nav aria-label={t(sprache, "footer.rechtliches")}>
+          <p class="label">{t(sprache, "footer.rechtliches")}</p>
+          <ul class="mt-12 text-nav">
+            {recht.map((r) => <li><a class="nav-link justify-start" href={r.href}>{r.label}</a></li>)}
+          </ul>
+        </nav>
+      )}
+      <Sprachumschalter aktuell={sprache} alternativen={alternativen} label={`${t(sprache, "a11y.sprache_waehlen")} (${t(sprache, "a11y.fusszeile")})`} class="mt-16" />
+    </div>
+  </div>
+
+  <div class="container-page border-t border-warm-stone py-24">
+    <p class="max-w-text caption">{kernsatz}</p>
+    <p class="caption mt-12">{t(sprache, "footer.copyright", { jahr, name: site.praxisname_voll })}</p>
+  </div>
+</footer>

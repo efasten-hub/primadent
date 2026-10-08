@@ -1,0 +1,68 @@
+---
+/**
+ * Standardvorlage: Leistungen, Ratgeber, Über, Praxis, FAQ, Rechtliches.
+ * Aufbau: Breadcrumb · H1 · Unterzeile · Antwortabsatz · Inhalt · FAQ · Terminbuchung · Autorenbox
+ */
+import Basis from "../layouts/Basis.astro";
+import Terminbuchung from "../components/Terminbuchung.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { site } from "../config/site";
+import { t } from "../i18n";
+import { routen } from "../i18n/routen";
+import type { VorlagenProps } from "./typen";
+
+type Props = VorlagenProps;
+const { id, sprache, daten } = Astro.props;
+const typ = routen[id].typ;
+const medizinisch = typ === "leistung" || typ === "ratgeber";
+const mitTermin = typ === "leistung" || typ === "ratgeber" || typ === "uebersicht" || typ === "seite";
+const datum = (iso?: string) =>
+  iso && /^\d{4}-\d{2}-\d{2}$/.test(iso)
+    ? new Intl.DateTimeFormat(sprache, { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso))
+    : (iso ?? "[[DATUM]]");
+---
+<Basis sprache={sprache} seitenId={id} titel={daten.seo_titel} beschreibung={daten.beschreibung}>
+  <article class="container-page pt-24">
+    <Breadcrumb sprache={sprache} id={id} />
+    <header class="mt-40 max-w-[52rem]">
+      <h1>{daten.titel}</h1>
+      {daten.unterzeile && <p class="intro mt-24 text-oxblood-muted">{daten.unterzeile}</p>}
+    </header>
+
+    {daten.antwort && (
+      <p class="intro mt-40 max-w-[52rem] border-l border-oxblood-ink pl-24">{daten.antwort}</p>
+    )}
+
+    <div class="inhalt mt-48">
+      <slot />
+    </div>
+
+    {daten.faq.length > 0 && (
+      <section class="mt-80" aria-labelledby="faq-titel">
+        <div class="sektion-kopf">
+          <p class="label">FAQ</p>
+          <div>
+            <h2 id="faq-titel">{t(sprache, "nav.faq")}</h2>
+            <div class="mt-24">
+              {daten.faq.map((f) => (
+                <details class="border-t border-oxblood-ink py-16">
+                  <summary class="cursor-pointer text-subheading font-caslon-ionic">{f.frage}</summary>
+                  <p class="mt-12 max-w-text">{f.antwort}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    {mitTermin && <Terminbuchung sprache={sprache} variante="block" class="mt-80" />}
+
+    {medizinisch && (
+      <p class="caption mt-40 border-t border-warm-stone pt-12">
+        {t(sprache, "seite.medizinisch_geprueft", { name: site.inhaber.name_voll, datum: datum(daten.stand) })}
+      </p>
+    )}
+    {typ === "recht" && sprache !== "de" && <p class="caption mt-40">{t(sprache, "seite.rechtsverbindlich")}</p>}
+  </article>
+</Basis>

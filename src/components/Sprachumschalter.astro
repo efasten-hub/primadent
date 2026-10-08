@@ -1,37 +1,38 @@
 ---
 /**
  * Sprachumschalter „DE · EN · ES · TR“ – dezent im Stil der Navigation, keine Flaggen.
- * Die aktive Sprache ist unterstrichen (aria-current). Jeder Link trägt lang + hreflang,
- * damit Screenreader die Sprachnamen korrekt aussprechen. Der zugängliche Name enthält
- * das sichtbare Kürzel („DE Deutsch“), damit Sprachsteuerung „DE“ findet (WCAG 2.5.3).
- * Die Ziel-URLs werden in Phase 2 aus der zentralen Slug-Zuordnung berechnet.
+ * - Ziel ist immer die entsprechende Seite der anderen Sprache (aus src/i18n/routen.ts).
+ * - Fehlt die Übersetzung, führt der Link zur deutschen Fassung mit Hinweis.
+ * - Die aktive Sprache ist unterstrichen (aria-current).
+ * - Jeder Link trägt lang + hreflang; der zugängliche Name enthält das sichtbare Kürzel
+ *   („DE Deutsch“), damit Sprachsteuerung „DE“ findet (WCAG 2.5.3).
+ * - Keine Weiterleitung, kein Cookie: Die Sprache steckt allein in der URL.
  */
-interface SprachLink {
-  code: string;        // "de" | "en" | "es" | "tr"
-  href: string;        // entsprechende Seite in dieser Sprache
-  name: string;        // Eigenbezeichnung, z. B. „Türkçe“
-}
+import { site, type Sprache } from "../config/site";
+import { t, type Alternative } from "../i18n";
+
 interface Props {
-  aktuell: string;
-  links: SprachLink[];
-  label: string;       // z. B. „Sprache wählen“ (aus i18n)
+  aktuell: Sprache;
+  alternativen: Alternative[];
+  /** Beschriftung der Navigation, z. B. „Sprache wählen (Fußzeile)“ */
+  label?: string;
   class?: string;
 }
-const { aktuell, links, label, class: klasse = "" } = Astro.props;
+const { aktuell, alternativen, label, class: klasse = "" } = Astro.props;
 ---
-<nav aria-label={label} class:list={["sprachumschalter", klasse]}>
+<nav aria-label={label ?? t(aktuell, "a11y.sprache_waehlen")} class:list={["sprachumschalter", klasse]}>
   <ul class="flex flex-wrap items-center">
-    {links.map((l, i) => (
+    {alternativen.map((a, i) => (
       <li class="flex items-center">
         {i > 0 && <span aria-hidden="true" class="text-oxblood-muted">·</span>}
         <a
-          href={l.href}
-          hreflang={l.code}
-          lang={l.code}
-          aria-current={l.code === aktuell ? "true" : undefined}
+          href={a.href}
+          hreflang={a.vorhanden ? a.sprache : site.sprachen.standard}
+          lang={a.sprache}
+          aria-current={a.sprache === aktuell ? "true" : undefined}
           class="nav-link"
         >
-          {l.code.toUpperCase()}<span class="sr-only"> {l.name}</span>
+          {a.sprache.toUpperCase()}<span class="sr-only"> {site.sprachen.bezeichnungen[a.sprache]}{!a.vorhanden && ` – ${t(a.sprache, "sprachen.nur_deutsch")}`}</span>
         </a>
       </li>
     ))}

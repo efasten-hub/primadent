@@ -1,0 +1,18 @@
+---
+/** Sprechzeiten aus site.ts, Wochentage und Uhrzeitformat aus src/i18n. */
+import { site, type Sprache } from "../config/site";
+import { t } from "../i18n";
+
+interface Props { sprache: Sprache; class?: string }
+const { sprache, class: klasse = "" } = Astro.props;
+const sz = site.sprechzeiten;
+---
+<dl class:list={["grid grid-cols-[auto_1fr] gap-x-16", klasse]}>
+  {sz.zeiten.map((z) => (
+    <>
+      <dt>{z.tage.map((tag) => t(sprache, `sprechzeiten.tage.${tag}`)).join(", ")}</dt>
+      <dd>{t(sprache, "sprechzeiten.uhr", { von: z.von, bis: z.bis })}</dd>
+    </>
+  ))}
+</dl>
+{sz.nach_vereinbarung && <p class:list={["mt-4", klasse]}>{t(sprache, "sprechzeiten.nach_vereinbarung")}</p>}

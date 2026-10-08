@@ -1,0 +1,32 @@
+---
+/** Breadcrumb aus der Eltern-Kette in src/i18n/routen.ts (JSON-LD BreadcrumbList folgt in Phase 5). */
+import type { Sprache } from "../config/site";
+import { seitenTitel, seitenVerfuegbar, t } from "../i18n";
+import { pfad, routen } from "../i18n/routen";
+
+interface Props { sprache: Sprache; id: string }
+const { sprache, id } = Astro.props;
+const kette: string[] = [];
+for (let aktuell: string | undefined = id; aktuell; aktuell = routen[aktuell]?.eltern) kette.unshift(aktuell);
+const verfuegbar = await seitenVerfuegbar();
+// Glieder ohne Seite in dieser Sprache erscheinen als Text ohne Link
+const punkte = [
+  { href: pfad("startseite", sprache)!, label: t(sprache, "nav.startseite") },
+  ...(await Promise.all(
+    kette.map(async (k) => ({
+      href: verfuegbar.get(k)?.has(sprache) ? pfad(k, sprache)! : null,
+      label: verfuegbar.get(k)?.has(sprache) ? await seitenTitel(k, sprache) : t(sprache, `nav.${k}`),
+    })),
+  )),
+];
+---
+<nav aria-label={t(sprache, "a11y.breadcrumb")}>
+  <ol class="flex flex-wrap items-center gap-x-8 caption">
+    {punkte.map((p, i) => (
+      <li class="flex items-center gap-x-8">
+        {i > 0 && <span aria-hidden="true">/</span>}
+        {i === punkte.length - 1 ? <span aria-current="page">{p.label}</span> : p.href ? <a class="link" href={p.href}>{p.label}</a> : <span>{p.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

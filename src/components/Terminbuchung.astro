@@ -1,0 +1,121 @@
+---
+/**
+ * <Terminbuchung /> – überall dieselbe Komponente: Hero, Header, Leistungsseiten, Kontakt, Abschluss-CTAs.
+ * Daten aus site.ts → terminbuchung, Texte aus src/i18n.
+ *
+ * Varianten
+ *   "hero"   – Online-Button + Telefon-Button, darunter „über Doctolib“
+ *   "header" – nur kompakter Online-Button (Telefon steht im Header separat)
+ *   "block"  – Abschluss-CTA/Kontaktseite: Titel, Hinweistext, Buttons, Empfehlung Telefon
+ *
+ * Modi (site.ts → terminbuchung.modus)
+ *   "link"   – eigener Button, Link auf Doctolib. Beim Laden der Seite KEINE Requests an Doctolib.
+ *   "widget" – nur Variante "block": Zwei-Klick-Platzhalter, Widget lädt erst nach Klick.
+ *              Andere Varianten verlinken dann auf den Kalender auf der Kontaktseite.
+ *   aktiv: false – überall Telefon + Anfrageformular.
+ */
+import { site, type Sprache } from "../config/site";
+import { t, terminZiel, terminOberflaecheInSprache, link } from "../i18n";
+import TerminWidget from "./TerminWidget.astro";
+
+interface Props {
+  sprache: Sprache;
+  variante?: "hero" | "header" | "block";
+  /** Überschrift-Ebene im Block (Standard h2) */
+  ebene?: "h2" | "h3";
+  class?: string;
+}
+const { sprache, variante = "block", ebene = "h2", class: klasse = "" } = Astro.props;
+const tb = site.terminbuchung;
+const Ueberschrift = ebene;
+
+const kontaktUrl = await link("kontakt", sprache);
+const datenschutzUrl = await link("datenschutz", sprache);
+const widgetModus = tb.aktiv && tb.modus === "widget";
+// Im Widget-Modus führen Buttons außerhalb des Blocks zum Kalender auf der Kontaktseite
+const ziel = await terminZiel(sprache);
+const onlineHref = ziel.href;
+const onlineExtern = ziel.extern;
+const oberflaecheHinweis = !terminOberflaecheInSprache(sprache);
+const telLabel = t(sprache, "termin.anrufen", { telefon: site.telefon_anzeige });
+---
+
+{tb.aktiv ? (
+  variante === "header" ? (
+    <a
+      href={onlineHref}
+      target={onlineExtern ? "_blank" : undefined}
+      rel={onlineExtern ? "noopener" : undefined}
+      class:list={["btn btn-primary btn-compact whitespace-nowrap", klasse]}
+      data-ereignis="online-termin"
+      data-sprache={sprache}
+    >
+      {t(sprache, "termin.online_kurz")}
+      <span class="sr-only"> ({t(sprache, "termin.ueber_anbieter", { anbieter: tb.anbieter_name })}{onlineExtern && `, ${t(sprache, "a11y.neues_fenster")}`})</span>
+    </a>
+  ) : variante === "hero" ? (
+    <div class={klasse}>
+      <div class="flex flex-wrap gap-12">
+        <a
+          href={onlineHref}
+          target={onlineExtern ? "_blank" : undefined}
+          rel={onlineExtern ? "noopener" : undefined}
+          class="btn btn-primary"
+          data-ereignis="online-termin"
+          data-sprache={sprache}
+        >
+          {t(sprache, "termin.online_buchen")}
+          {onlineExtern && <span class="sr-only"> ({t(sprache, "a11y.neues_fenster")})</span>}
+        </a>
+        <a href={`tel:${site.telefon}`} class="btn btn-outline" data-ereignis="anruf" data-sprache={sprache}>{telLabel}</a>
+      </div>
+      <p class="caption mt-12">
+        {t(sprache, "termin.ueber_anbieter", { anbieter: tb.anbieter_name })}
+        {oberflaecheHinweis && <> · {t(sprache, "termin.oberflaeche_sprache")}</>}
+      </p>
+    </div>
+  ) : (
+    <section class:list={["bg-aged-linen p-24 md:p-40", klasse]} id={widgetModus ? "online-kalender" : undefined} aria-labelledby={`termin-titel-${sprache}`}>
+      <Ueberschrift id={`termin-titel-${sprache}`}>{t(sprache, "termin.titel")}</Ueberschrift>
+      <p class="mt-16 max-w-text">{t(sprache, "termin.hinweis")}</p>
+      {widgetModus ? (
+        <TerminWidget sprache={sprache} embed={tb.widget_embed} datenschutzUrl={datenschutzUrl} />
+      ) : (
+        <>
+          <div class="mt-24 flex flex-wrap gap-12">
+            <a
+              href={onlineHref}
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary"
+              data-ereignis="online-termin"
+              data-sprache={sprache}
+            >
+              {t(sprache, "termin.online_buchen")}<span class="sr-only"> ({t(sprache, "a11y.neues_fenster")})</span>
+            </a>
+            <a href={`tel:${site.telefon}`} class="btn btn-outline" data-ereignis="anruf" data-sprache={sprache}>{telLabel}</a>
+          </div>
+          <p class="caption mt-12">
+            {t(sprache, "termin.ueber_anbieter", { anbieter: tb.anbieter_name })} · {t(sprache, "a11y.neues_fenster")}
+            {oberflaecheHinweis && <> · {t(sprache, "termin.oberflaeche_sprache")}</>}
+          </p>
+        </>
+      )}
+      <p class="mt-24 max-w-text text-nav">{t(sprache, "termin.telefon_empfehlung")}</p>
+    </section>
+  )
+) : (
+  /* Fallback: Online-Buchung abgeschaltet → Telefon und Anfrageformular */
+  variante === "header" ? (
+    <a href={`tel:${site.telefon}`} class:list={["btn btn-primary btn-compact whitespace-nowrap", klasse]}>{telLabel}</a>
+  ) : (
+    <section class:list={[variante === "block" && "bg-aged-linen p-24 md:p-40", klasse]} aria-labelledby={variante === "block" ? `termin-titel-${sprache}` : undefined}>
+      {variante === "block" && <Ueberschrift id={`termin-titel-${sprache}`}>{t(sprache, "termin.titel")}</Ueberschrift>}
+      {variante === "block" && <p class="mt-16 max-w-text">{t(sprache, "termin.fallback")}</p>}
+      <div class:list={["flex flex-wrap gap-12", variante === "block" && "mt-24"]}>
+        <a href={`tel:${site.telefon}`} class="btn btn-primary" data-ereignis="anruf" data-sprache={sprache}>{telLabel}</a>
+        <a href={`${kontaktUrl}#anfrage`} class="btn btn-outline">{t(sprache, "termin.anfrage_link")}</a>
+      </div>
+    </section>
+  )
+)}

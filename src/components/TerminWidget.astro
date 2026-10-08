@@ -1,0 +1,49 @@
+---
+/**
+ * Zwei-Klick-Lösung für das Doctolib-Widget (nur site.ts → terminbuchung.modus = "widget").
+ * Der Einbettungscode steht in einem <template>: Dessen Inhalt ist für den Browser inaktiv –
+ * er lädt nichts, setzt keine Cookies und führt keine Scripts aus, bis jemand klickt.
+ */
+import type { Sprache } from "../config/site";
+import { site } from "../config/site";
+import { t } from "../i18n";
+
+interface Props { sprache: Sprache; embed: string; datenschutzUrl: string }
+const { sprache, embed, datenschutzUrl } = Astro.props;
+const linkHtml = `<a class="link" href="${datenschutzUrl}">${t(sprache, "termin.datenschutzerklaerung")}</a>`;
+const hinweis = t(sprache, "termin.widget_datenschutz", { link: linkHtml });
+---
+<div class="mt-24" data-widget>
+  <div class="border border-oxblood-ink bg-cream-paper p-24" data-widget-platzhalter>
+    <p class="max-w-text text-nav" set:html={hinweis} />
+    <div class="mt-16 flex flex-wrap gap-12">
+      <button type="button" class="btn btn-primary" data-widget-laden data-ereignis="online-termin" data-sprache={sprache}>
+        {t(sprache, "termin.widget_laden")}
+      </button>
+      <a href={`tel:${site.telefon}`} class="btn btn-outline">{t(sprache, "termin.anrufen", { telefon: site.telefon_anzeige })}</a>
+    </div>
+  </div>
+  <div data-widget-ziel></div>
+  <template set:html={embed} />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-widget-laden]").forEach((knopf) => {
+    knopf.addEventListener("click", () => {
+      const box = knopf.closest<HTMLElement>("[data-widget]");
+      const vorlage = box?.querySelector("template");
+      const ziel = box?.querySelector("[data-widget-ziel]");
+      if (!box || !vorlage || !ziel) return;
+      const inhalt = vorlage.content.cloneNode(true) as DocumentFragment;
+      // Scripts aus <template> neu anlegen, damit der Browser sie ausführt
+      inhalt.querySelectorAll("script").forEach((alt) => {
+        const neu = document.createElement("script");
+        for (const a of Array.from(alt.attributes)) neu.setAttribute(a.name, a.value);
+        neu.textContent = alt.textContent;
+        alt.replaceWith(neu);
+      });
+      ziel.replaceChildren(inhalt);
+      box.querySelector("[data-widget-platzhalter]")?.remove();
+    });
+  });
+</script>

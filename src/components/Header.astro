@@ -1,0 +1,71 @@
+---
+/**
+ * Header (DESIGN.md A8): links Logo + Serif-Wortmarke, rechts Sprachumschalter · Telefon · „Online-Termin“.
+ * Ab 1024px zweizeilig mit Navigation darunter; darunter ein Menü ohne JavaScript (<details>).
+ * Navigation zeigt nur Seiten, die es in der aktuellen Sprache gibt.
+ */
+import { site, type Sprache } from "../config/site";
+import { t, seitenVerfuegbar, type Alternative } from "../i18n";
+import { pfad, routen } from "../i18n/routen";
+import Sprachumschalter from "./Sprachumschalter.astro";
+import Terminbuchung from "./Terminbuchung.astro";
+import logo from "../assets/logo/logo-platzhalter.svg";
+
+interface Props { sprache: Sprache; seitenId: string; alternativen: Alternative[] }
+const { sprache, seitenId, alternativen } = Astro.props;
+
+const NAV = ["leistungen", "ueber-dr-adali", "praxis-team", "ratgeber", "faq", "kontakt"];
+const verfuegbar = await seitenVerfuegbar();
+const punkte = NAV.filter((id) => verfuegbar.get(id)?.has(sprache)).map((id) => ({
+  id,
+  href: pfad(id, sprache)!,
+  label: t(sprache, `nav.${id}`),
+}));
+// aktueller Bereich: Seite selbst oder deren Eltern (Leistung → „Leistungen“)
+const bereich = routen[seitenId]?.eltern ?? seitenId;
+const startHref = pfad("startseite", sprache)!;
+---
+<header class="border-b border-oxblood-ink">
+  <div class="container-page flex flex-wrap items-center justify-between gap-x-32 gap-y-4 py-12">
+    <a href={startHref} class="inline-flex min-h-44 items-center gap-12 no-underline" aria-label={t(sprache, "a11y.startseite_link")}>
+      <img src={logo.src} width="44" height="44" alt="" />
+      <span class="flex flex-col" aria-hidden="true">
+        <span class="font-caslon-ionic text-subheading leading-[1]">{site.praxisname}</span>
+        <span class="caption mt-4">{site.praxiszusatz}</span>
+      </span>
+    </a>
+    <div class="flex flex-wrap items-center gap-x-24 gap-y-8">
+      <Sprachumschalter aktuell={sprache} alternativen={alternativen} class="whitespace-nowrap" />
+      <a href={`tel:${site.telefon}`} class="nav-link hidden whitespace-nowrap md:inline-flex">{site.telefon_anzeige}</a>
+      <Terminbuchung sprache={sprache} variante="header" class="hidden md:inline-flex" />
+    </div>
+  </div>
+
+  {punkte.length > 0 && (
+    <>
+      <details class="menue border-t border-oxblood-ink lg:hidden">
+        <summary class="container-page label flex min-h-48 cursor-pointer list-none items-center justify-between">
+          <span>{t(sprache, "a11y.menue")}</span><span aria-hidden="true" class="menue-zeichen">+</span>
+        </summary>
+        <nav aria-label={t(sprache, "a11y.navigation_mobil")} class="container-page border-t border-oxblood-ink pb-24">
+          <ul>
+            {punkte.map((p) => (
+              <li class="border-b border-oxblood-ink">
+                <a class="nav-link min-h-48 w-full justify-start" href={p.href} aria-current={p.id === bereich ? "page" : undefined}>{p.label}</a>
+              </li>
+            ))}
+          </ul>
+          <Sprachumschalter aktuell={sprache} alternativen={alternativen} label={`${t(sprache, "a11y.sprache_waehlen")} (${t(sprache, "a11y.menue")})`} class="mt-16" />
+          <a href={`tel:${site.telefon}`} class="btn btn-outline mt-16 w-full">{t(sprache, "termin.anrufen", { telefon: site.telefon_anzeige })}</a>
+        </nav>
+      </details>
+      <nav aria-label={t(sprache, "a11y.hauptnavigation")} class="hidden border-t border-oxblood-ink lg:block">
+        <ul class="container-page flex flex-wrap gap-x-24 py-4">
+          {punkte.map((p) => (
+            <li><a class="nav-link" href={p.href} aria-current={p.id === bereich ? "page" : undefined}>{p.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  )}
+</header>

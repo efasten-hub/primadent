@@ -1,0 +1,60 @@
+---
+/**
+ * Startseite – Phase 2: Hero mit Terminbuchung, Sprachhinweis, Sprechzeiten und Anfahrt.
+ * Die übrigen Sektionen (Schwerpunkte, Zielgruppen, Ablauf, Teaser, Labor, FAQ) folgen in Phase 4,
+ * Fotos in Phase 3.
+ */
+import Basis from "../layouts/Basis.astro";
+import Terminbuchung from "../components/Terminbuchung.astro";
+import SprachHinweis from "../components/SprachHinweis.astro";
+import Sprechzeiten from "../components/Sprechzeiten.astro";
+import { site } from "../config/site";
+import { t } from "../i18n";
+import type { VorlagenProps } from "./typen";
+
+type Props = VorlagenProps;
+const { id, sprache, daten } = Astro.props;
+---
+<Basis sprache={sprache} seitenId={id} titel={daten.seo_titel} beschreibung={daten.beschreibung}>
+  <section class="container-page grid gap-40 py-48 md:grid-cols-2 md:items-end md:py-80">
+    <div>
+      <h1 class="hero-title">{daten.titel}</h1>
+      {daten.unterzeile && <p class="intro mt-24 text-oxblood-muted">{daten.unterzeile}</p>}
+      <Terminbuchung sprache={sprache} variante="hero" class="mt-40" />
+    </div>
+    <div class="foto-folgt aspect-[4/3] w-full" aria-hidden="true"></div>
+  </section>
+
+  <div class="container-page">
+    <SprachHinweis sprache={sprache} />
+    <div class="inhalt mt-40">
+      <slot />
+    </div>
+  </div>
+
+  <section class="container-page section" aria-labelledby="praxis-titel">
+    <div class="sektion-kopf">
+      <p class="label">{t(sprache, "anfahrt.titel")}</p>
+      <div class="grid gap-40 md:grid-cols-2">
+        <div>
+          <h2 id="praxis-titel">{site.praxisname}</h2>
+          <address class="mt-16 not-italic">
+            {site.adresse.strasse}<br />{site.adresse.plz} {site.adresse.ort}<br />
+            {t(sprache, "anfahrt.aufgang")}{site.adresse.aufzug && <>, {t(sprache, "anfahrt.aufzug")}</>}
+          </address>
+          <p class="mt-12">{t(sprache, "anfahrt.parken")}</p>
+          <p class="mt-12 text-nav">{t(sprache, "versicherung.alle")}</p>
+        </div>
+        <div>
+          <h3>{t(sprache, "sprechzeiten.titel")}</h3>
+          <Sprechzeiten sprache={sprache} class="mt-12" />
+          <p class="mt-12 text-nav">{t(sprache, "termin.taeglich")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container-page">
+    <Terminbuchung sprache={sprache} variante="block" />
+  </div>
+</Basis>

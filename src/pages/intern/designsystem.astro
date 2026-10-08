@@ -21,6 +21,7 @@ const sprachen = [
   { code: "es", href: "#", name: "Español" },
   { code: "tr", href: "#", name: "Türkçe" },
 ];
+const alternativen = sprachen.map((s) => ({ sprache: s.code as "de" | "en" | "es" | "tr", href: s.href, vorhanden: true }));
 const nav = ["Leistungen", "Über Dr. Adali", "Praxis & Team", "Ratgeber", "FAQ", "Termin & Kontakt"];
 
 const farben = [
@@ -85,7 +86,7 @@ const schwerpunkte = [
           </span>
         </a>
         <div class="flex flex-wrap items-center gap-x-24 gap-y-8">
-          <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen" class="whitespace-nowrap" />
+          <Sprachumschalter aktuell="de" alternativen={alternativen} label="Sprache wählen" class="whitespace-nowrap" />
           <a href={tel} class="nav-link hidden whitespace-nowrap md:inline-flex">030 44 26 84 3</a>
           <a href={doctolib} target="_blank" rel="noopener" class="btn btn-primary btn-compact hidden whitespace-nowrap md:inline-flex">
             Online-Termin<span class="sr-only"> (über Doctolib, öffnet in neuem Fenster)</span>
@@ -102,7 +103,7 @@ const schwerpunkte = [
               <li class="border-b border-oxblood-ink"><a class="nav-link min-h-48 w-full justify-start" href="#" aria-current={i === 0 ? "page" : undefined}>{n}</a></li>
             ))}
           </ul>
-          <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Menü)" class="mt-16" />
+          <Sprachumschalter aktuell="de" alternativen={alternativen} label="Sprache wählen (Menü)" class="mt-16" />
           <a href={tel} class="btn btn-outline mt-16 w-full">030 44 26 84 3 anrufen</a>
         </nav>
       </details>
@@ -288,7 +289,7 @@ const schwerpunkte = [
           <li><a class="nav-link justify-start" href={tel}>030 44 26 84 3</a></li>
           <li><a class="nav-link justify-start" href="mailto:kontakt@zahnarzt-adali.de">kontakt@zahnarzt-adali.de</a></li>
         </ul>
-        <Sprachumschalter aktuell="de" links={sprachen} label="Sprache wählen (Fußzeile)" />
+        <Sprachumschalter aktuell="de" alternativen={alternativen} label="Sprache wählen (Fußzeile)" />
       </div>
     </footer>
 

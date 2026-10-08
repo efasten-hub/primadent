@@ -1,0 +1,27 @@
+---
+/** 404-Seite im Stil von DESIGN.md, je Sprache, mit Terminbuchung. noindex. */
+import Basis from "../layouts/Basis.astro";
+import Terminbuchung from "../components/Terminbuchung.astro";
+import type { Sprache } from "../config/site";
+import { t, link, seitenVerfuegbar } from "../i18n";
+
+interface Props { sprache: Sprache }
+const { sprache } = Astro.props;
+const verfuegbar = await seitenVerfuegbar();
+const ziele = await Promise.all(
+  ["startseite", "leistungen", "kontakt", "faq"]
+    .filter((id) => verfuegbar.get(id)?.has(sprache))
+    .map(async (id) => ({ href: await link(id, sprache), label: t(sprache, `nav.${id}`) })),
+);
+---
+<Basis sprache={sprache} seitenId="startseite" titel={`404 · ${t(sprache, "seite.nicht_gefunden_titel")}`} beschreibung={t(sprache, "seite.nicht_gefunden_text")} noindex>
+  <div class="container-page section">
+    <p class="caption">404</p>
+    <h1 class="mt-16">{t(sprache, "seite.nicht_gefunden_titel")}</h1>
+    <p class="intro mt-24 max-w-text">{t(sprache, "seite.nicht_gefunden_text")}</p>
+    <ul class="mt-24">
+      {ziele.map((z) => <li><a class="link-action" href={z.href}>{z.label}</a></li>)}
+    </ul>
+    <Terminbuchung sprache={sprache} variante="block" class="mt-60" />
+  </div>
+</Basis>

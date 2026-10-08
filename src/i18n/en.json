@@ -1,0 +1,152 @@
+{
+  "_hinweise": "Interface texts in English (neutral, polite). Not yet reviewed by a native speaker [[PRÜFEN]].",
+  "meta": {
+    "sprache_name": "English",
+    "sprache_im_satz": "English"
+  },
+  "a11y": {
+    "zum_inhalt": "Skip to content",
+    "hauptnavigation": "Main navigation",
+    "navigation_mobil": "Main navigation (mobile)",
+    "sprache_waehlen": "Choose language",
+    "neues_fenster": "opens in a new window",
+    "schnellzugriff": "Quick access",
+    "menue": "Menu",
+    "breadcrumb": "You are here",
+    "startseite_link": "Dentaviva – home page",
+    "fusszeile": "Footer"
+  },
+  "nav": {
+    "startseite": "Home",
+    "leistungen": "Services",
+    "ueber-dr-adali": "About Dr. Adali",
+    "praxis-team": "Practice & team",
+    "ratgeber": "Guide",
+    "faq": "FAQ",
+    "kontakt": "Appointments & contact",
+    "fuer-zahnaerzte": "For dentists",
+    "impressum": "Legal notice",
+    "datenschutz": "Privacy",
+    "barrierefreiheit": "Accessibility"
+  },
+  "termin": {
+    "titel": "Book an appointment",
+    "online_buchen": "Book online",
+    "online_kurz": "Book online",
+    "ueber_anbieter": "via {anbieter}",
+    "anrufen": "Call {telefon}",
+    "anrufen_kurz": "Call",
+    "hinweis": "You can book appointments online via Doctolib at any time – or by phone during opening hours.",
+    "telefon_empfehlung": "For a first consultation about implants, a second opinion or treatment for children with special conditions, it is best to speak to us directly by phone.",
+    "oberflaeche_sprache": "The Doctolib booking page is available in English.",
+    "taeglich": "Appointments can be made every day by phone or online.",
+    "fallback": "Please book your appointment by phone or using our request form.",
+    "anfrage_link": "Go to the request form",
+    "widget_laden": "Load online calendar",
+    "widget_datenschutz": "The Doctolib calendar only loads when you click “Load online calendar”. Data is then transferred to Doctolib GmbH. Find out more in our {link}.",
+    "datenschutzerklaerung": "privacy policy"
+  },
+  "anfahrt": {
+    "titel": "Getting here",
+    "aufgang": "Entrance A, on the left, 2nd floor",
+    "aufzug": "lift available",
+    "parken": "Free parking in the underground car park",
+    "oepnv": "By public transport",
+    "fussweg": "approx. {min} min walk",
+    "karte_laden": "Load map",
+    "karte_hinweis": "The map is only loaded from OpenStreetMap after you click. Your IP address is then transmitted to the map service.",
+    "route": "Plan your route"
+  },
+  "sprechzeiten": {
+    "titel": "Opening hours",
+    "uhr": "{von}–{bis}",
+    "nach_vereinbarung": "and by appointment",
+    "tage": {
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
+      "Sunday": "Sunday"
+    }
+  },
+  "sprachen": {
+    "namen": { "de": "German", "en": "English", "es": "Spanish", "tr": "Turkish" },
+    "und": "and",
+    "behandlung_in": "Treatment and consultations in {sprachen}.",
+    "dr_adali_spricht": "Dr. Adali advises and treats you in {sprachen}.",
+    "team_spricht": "Our team looks after you in {sprachen}.",
+    "auch_verfuegbar": "This page is also available in English.",
+    "auch_verfuegbar_link": "Go to the English version",
+    "schliessen": "Close notice",
+    "nicht_uebersetzt": "This page is not yet available in English. You are viewing the German version.",
+    "nur_deutsch": "German only"
+  },
+  "versicherung": {
+    "alle": "We welcome patients with statutory (GKV) or private (PKV) health insurance as well as self-paying patients."
+  },
+  "seite": {
+    "medizinisch_geprueft": "Medically reviewed by {name} · Last updated: {datum}",
+    "mehr_erfahren": "Learn more",
+    "nicht_gefunden_titel": "This page does not exist.",
+    "nicht_gefunden_text": "The address may have changed. You can continue here:",
+    "rechtsverbindlich": "The German version is legally binding."
+  },
+  "footer": {
+    "kontakt": "Contact",
+    "schwerpunkte": "Key services",
+    "rechtliches": "Legal",
+    "sprechzeiten": "Opening hours",
+    "copyright": "© {jahr} {name}"
+  },
+  "geo": {
+    "_hinweis": "[[PRÜFEN]] Core statement, identical in llms.txt, About page and footer.",
+    "kernsatz": "Dentaviva – Dr. Adali’s dental practice at Schönhauser Allee 10–11 in Berlin, on the border of Mitte and Prenzlauer Berg, is run by Dr. Ufuk Adali, former senior consultant (leitender Oberarzt) at Charité university hospital, prosthodontics specialist certified by the DGPro and certified implantologist (DGI). Key areas are dental prosthetics, implants, resin-bonded bridges, cosmetic dentistry, TMD therapy and care for children with missing teeth, MIH and rare dental conditions – with an in-house dental laboratory. Appointments can be booked by phone or online via Doctolib; treatment is available in {sprachen}."
+  },
+  "team": {
+    "rollen": {
+      "zahnarzt_inhaber": "Dentist, practice owner",
+      "zahntechnikermeister": "Master dental technician",
+      "zfa": "Dental assistant",
+      "zmp": "Dental prophylaxis assistant"
+    },
+    "foto_folgt": "Photo coming soon",
+    "spricht": "Speaks {sprachen}"
+  },
+  "formular": {
+    "titel": "Send a request",
+    "einleitung": "For anything you cannot book online – for example a second opinion or a first consultation. We usually reply within two working days.",
+    "name": "Name",
+    "kontakt": "Phone or email",
+    "kontakt_hilfe": "So that we can reach you – one is enough.",
+    "wunschtermin": "Preferred time",
+    "wunschtermin_hilfe": "For example “mornings” or “from 15 November”",
+    "sprache": "Preferred language",
+    "anliegen": "Your enquiry",
+    "anliegen_optionen": {
+      "erstberatung": "First consultation",
+      "zweitmeinung": "Second opinion",
+      "implantat": "Implant",
+      "zahnersatz": "Crowns, bridges, dentures",
+      "aesthetik": "Cosmetic dentistry",
+      "kinder": "Children",
+      "sonstiges": "Other"
+    },
+    "nachricht": "Short message",
+    "optional": "optional",
+    "pflicht": "required",
+    "hinweis_befunde": "Please do not send medical reports, X-rays or other health data through this form. You are welcome to bring documents to your appointment.",
+    "datenschutz_hinweis": "We only use your details to answer your request. Find out more in our {link}.",
+    "senden": "Send request",
+    "fehler": {
+      "titel": "Please check your details:",
+      "name": "Please enter your name.",
+      "kontakt": "Please enter a phone number or email address.",
+      "email": "Please check the email address.",
+      "versand": "Unfortunately, your request could not be sent. Please call us: {telefon}."
+    },
+    "danke_titel": "Thank you for your request.",
+    "danke_text": "We have received your message and usually reply within two working days. If it is urgent, please call us."
+  }
+}

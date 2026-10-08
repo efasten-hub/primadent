@@ -2,10 +2,19 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
-// Phase 1: Grundgerüst mit Theme. i18n-Routing, Sitemap usw. folgen in Phase 2.
+// Statischer Build für Hetzner Webhosting (Apache, ohne Node-Server).
+// Sprachen und Slugs: src/config/site.ts und src/i18n/routen.ts.
 export default defineConfig({
-  site: "https://zahnarzt-adali.de",
+  site: "https://zahnarzt-adali.de", // identisch zu site.ts → domain [[PRÜFEN: Domain]]
+  output: "static",
+  i18n: {
+    defaultLocale: "de",
+    locales: ["de", "en", "es", "tr"],
+    // Deutsch ohne Präfix, alle anderen Sprachen mit /en, /es, /tr. Keine Weiterleitung nach Browsersprache.
+    routing: { prefixDefaultLocale: false, redirectToDefaultLocale: false },
+  },
   trailingSlash: "ignore",
   build: { format: "directory" },
-  vite: { plugins: [tailwindcss()] },
+  // Scripts immer als eigene Datei (nie inline) – Voraussetzung für eine strikte Content-Security-Policy
+  vite: { plugins: [tailwindcss()], build: { assetsInlineLimit: 0 } },
 });

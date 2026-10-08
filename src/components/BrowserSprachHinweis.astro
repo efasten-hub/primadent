@@ -1,0 +1,62 @@
+---
+/**
+ * Dezenter, schließbarer Hinweis „Diese Seite gibt es auch auf Türkçe“ – nur wenn
+ *  - die Browsersprache eine andere Website-Sprache ist und
+ *  - diese Seite in der Browsersprache existiert.
+ * KEINE automatische Weiterleitung, KEIN Cookie, KEIN localStorage: Nach dem Schließen
+ * bleibt der Hinweis nur auf dieser Seite verborgen. Ohne JavaScript erscheint nichts.
+ * Abschaltbar in site.ts → schalter.browsersprache_hinweis.
+ */
+import { site, type Sprache } from "../config/site";
+import { t, type Alternative } from "../i18n";
+
+interface Props { sprache: Sprache; alternativen: Alternative[] }
+const { sprache, alternativen } = Astro.props;
+// Texte in der jeweiligen Zielsprache (wer Türkisch eingestellt hat, liest den Hinweis auf Türkisch)
+const ziele = alternativen
+  .filter((a) => a.vorhanden && a.sprache !== sprache)
+  .map((a) => ({
+    sprache: a.sprache,
+    href: a.href,
+    text: t(a.sprache, "sprachen.auch_verfuegbar"),
+    link: t(a.sprache, "sprachen.auch_verfuegbar_link"),
+    schliessen: t(a.sprache, "sprachen.schliessen"),
+  }));
+---
+{site.schalter.browsersprache_hinweis && ziele.length > 0 && (
+  <aside class="browser-hinweis hidden border-b border-oxblood-ink bg-aged-linen" data-browser-hinweis data-aktuell={sprache} data-ziele={JSON.stringify(ziele)}>
+    <div class="container-page flex flex-wrap items-center justify-between gap-x-24 gap-y-4 py-8">
+      <p class="text-nav"><span data-text></span> <a class="link" data-link href="#"></a></p>
+      <button type="button" class="nav-link" data-schliessen><span aria-hidden="true">×</span><span class="sr-only" data-schliessen-text></span></button>
+    </div>
+  </aside>
+)}
+
+<script>
+  const box = document.querySelector<HTMLElement>("[data-browser-hinweis]");
+  if (box) {
+    type Ziel = { sprache: string; href: string; text: string; link: string; schliessen: string };
+    const ziele: Ziel[] = JSON.parse(box.dataset.ziele || "[]");
+    const aktuell = box.dataset.aktuell;
+    // Bevorzugte Sprachen des Browsers in Reihenfolge, nur der Sprachcode („tr-TR“ → „tr“)
+    const bevorzugt = (navigator.languages || [navigator.language]).map((l) => l.slice(0, 2).toLowerCase());
+    // Steht die aktuelle Sprache vor allen anderen, ist alles gut → kein Hinweis
+    const erste = bevorzugt.find((code) => code === aktuell || ziele.some((z) => z.sprache === code));
+    const ziel = ziele.find((z) => z.sprache === erste);
+    if (ziel) {
+      const text = box.querySelector("[data-text]")!;
+      const link = box.querySelector<HTMLAnchorElement>("[data-link]")!;
+      text.textContent = ziel.text;
+      text.setAttribute("lang", ziel.sprache);
+      link.textContent = ziel.link;
+      link.href = ziel.href;
+      link.hreflang = ziel.sprache;
+      link.lang = ziel.sprache;
+      const sr = box.querySelector("[data-schliessen-text]")!;
+      sr.textContent = ziel.schliessen;
+      sr.setAttribute("lang", ziel.sprache);
+      box.classList.remove("hidden");
+      box.querySelector("[data-schliessen]")!.addEventListener("click", () => box.remove());
+    }
+  }
+</script>
